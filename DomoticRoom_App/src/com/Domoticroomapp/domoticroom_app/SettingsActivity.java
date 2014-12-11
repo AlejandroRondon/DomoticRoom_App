@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.transition.Transition;
 //import android.widget.Toast;
 
 public class SettingsActivity extends Activity{
@@ -23,7 +22,7 @@ public class SettingsActivity extends Activity{
 	
 		FragmentManager fragmentManager = getFragmentManager();
 		FragmentTransaction  fragmentTransaction = fragmentManager.beginTransaction();
-		fragmentTransaction.setTransition(android.app.FragmentTransaction.TRANSIT_NONE);
+		//fragmentTransaction.setTransition(android.app.FragmentTransaction.TRANSIT_NONE);
 		if(fragmentToSet == R.layout.fragment_settings_bluetooth){
 			fragmentTransaction.add(android.R.id.content, fragmentSettingsBluetooth).commit();
 		}else{

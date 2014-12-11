@@ -1,15 +1,15 @@
 package com.Domoticroomapp.domoticroom_app;
 
 
-import android.R.string;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
 	final int Intent_KEYWORD = 12345;
 	
 	int fragmentToSet =0;
