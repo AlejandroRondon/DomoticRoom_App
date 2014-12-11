@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.Domoticroomapp.domoticroom_app.MainActivity" >
+
+    <item
+        android:id="@+id/mnSettings"
+        android:title="@string/action_settings">
+        <menu>
+            <item android:id="@+id/mnBluetooth" android:title="@string/sBluetooth"/>
+            <item android:id="@+id/mnCustomize" android:title="@string/sCustomize"/>
+        </menu>
+    </item>
+
+</menu>
