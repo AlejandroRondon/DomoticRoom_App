@@ -1,10 +1,11 @@
 package com.Domoticroomapp.domoticroom_app;
 
 
-import android.app.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTabHost;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -14,11 +15,20 @@ public class MainActivity extends FragmentActivity {
 	
 	int fragmentToSet =0;
 	
-	
+    private FragmentTabHost mTabHost;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        mTabHost = (FragmentTabHost)findViewById(android.R.id.tabhost);
+        mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
+
+        mTabHost.addTab(mTabHost.newTabSpec("tab1").setIndicator("ROOM 1"),
+            Tab1.class, null);
+        mTabHost.addTab(mTabHost.newTabSpec("tab2").setIndicator("ROOM 2"),
+        	Tab2.class, null);
     }
 
 
@@ -37,10 +47,11 @@ public class MainActivity extends FragmentActivity {
         int id = item.getItemId();
         if (id == R.id.mnBluetooth) {
         	fragmentToSet = R.layout.fragment_settings_bluetooth;
+
         	Intent i = new Intent(this,SettingsActivity.class);
 			i.putExtra("paramFragmSet",fragmentToSet);
 			startActivityForResult(i, Intent_KEYWORD);
-        	
+		
             return true;
         }
         if (id == R.id.mnCustomize) {

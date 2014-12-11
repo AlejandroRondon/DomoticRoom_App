@@ -45,11 +45,9 @@ public final class R {
         public static final int activity_settings=0x7f030001;
         public static final int fragment_settings_bluetooth=0x7f030002;
         public static final int fragment_settings_customize=0x7f030003;
-        public static final int fragment_tab1=0x7f030004;
-        public static final int fragment_tab2=0x7f030005;
-        public static final int fragment_tabhost=0x7f030006;
-        public static final int tab1=0x7f030007;
-        public static final int tab2=0x7f030008;
+        public static final int fragment_tabhost=0x7f030004;
+        public static final int tab1=0x7f030005;
+        public static final int tab2=0x7f030006;
     }
     public static final class menu {
         public static final int menu_main_activity=0x7f070000;
