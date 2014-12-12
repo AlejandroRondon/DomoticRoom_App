@@ -9,7 +9,7 @@ import android.support.v4.app.FragmentTabHost;
 import android.view.Menu;
 import android.view.MenuItem;
 
-
+//jola
 public class MainActivity extends FragmentActivity {
 	final int Intent_KEYWORD = 12345;
 	
