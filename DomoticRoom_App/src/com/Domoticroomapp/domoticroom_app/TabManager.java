@@ -6,6 +6,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.util.Log;
+import android.widget.Toast;
 
 
 public class TabManager {
@@ -30,13 +31,34 @@ public class TabManager {
 	}
 
 	public boolean newTab(String defaultTabName,Fragment fragment)
-	{
+	{	
+		int i,j=0;
+		boolean wasFoundName=false;
+		String defaultTabNamePlus =defaultTabName.concat(" ["+(j)+"]");// adding the index tab to the default tab name
 		if(tabsCount<tabsAmountLimit){
 			InputText_Dialog getNameRoom_Dialog = new InputText_Dialog("New Room","Name","Ok","Cancel");
 			getNameRoom_Dialog.show(fragmentManager, "tagPersonalizatedDialog");
 			
+			/*buscamos si hay alguna pestaña con el nombre por defecto */
+			for(j=0;j<tabsAmountLimit;j++){
+				defaultTabNamePlus=defaultTabName+" ["+(j+1)+"]";
+				for(i=0;i<tabsCount;i++){
+					if((tabsArray.get(i).getText().equals(defaultTabNamePlus))){
+						Log.i("TabManager", "was found in [" + i+ "]");
+						wasFoundName=true;
+						break;
+					}
+
+				}
+				if(wasFoundName == false){
+					break;
+				}else{
+					wasFoundName = false;
+				}
+				
+			}
 		    //Creamos las pestañas y la agregamos al arraylist
-			ActionBar.Tab newTab=abar.newTab().setText(defaultTabName+" ["+tabsCount+"]" );
+			ActionBar.Tab newTab=abar.newTab().setText(defaultTabNamePlus);
 			tabsArray.add(newTab);
 	        //Asociamos los listener a las pestañas
 	        tabsArray.get(tabsCount).setTabListener(new TabListenerManager(fragment));
@@ -51,8 +73,10 @@ public class TabManager {
 	
 	public void deleteTab(){
 		if(tabsCount>0){
-		abar.removeTab(abar.getSelectedTab());
-		//arra
+		ActionBar.Tab tabToDelete =	abar.getSelectedTab();
+		abar.removeTab(tabToDelete);
+		int indexTabToDelete  = tabsArray.lastIndexOf(tabToDelete);
+		tabsArray.remove(indexTabToDelete);
 		tabsCount--;
 		Log.i("TabManager","New tab created, index: " + (tabsCount-1));
 		}
