@@ -24,5 +24,7 @@
     <string name="sDelete">Delete</string>
     <string name="tab_1">Tab 1</string>
     <string name="tab_2">Tab 2</string>
+    <string name="sEmpty">Empty</string>
+    <string name="sIDescritpion_NewRoom">New Room</string>
 
 </resources>

@@ -23,30 +23,32 @@ public final class R {
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
+        public static final int ic_newroom=0x7f020001;
     }
     public static final class id {
-        public static final int listView1=0x7f080006;
-        public static final int mnBluetooth=0x7f08000b;
-        public static final int mnBluetoothSettings=0x7f080009;
-        public static final int mnCustomize=0x7f08000a;
-        public static final int mnDelete=0x7f08000c;
-        public static final int mnNew=0x7f08000d;
-        public static final int mnSettings=0x7f080008;
-        public static final int paired=0x7f080004;
+        public static final int eEditText=0x7f080002;
+        public static final int listView1=0x7f080008;
+        public static final int mnBluetooth=0x7f08000c;
+        public static final int mnBluetoothSettings=0x7f08000a;
+        public static final int mnCustomize=0x7f08000b;
+        public static final int mnDelete=0x7f08000d;
+        public static final int mnNew=0x7f08000e;
+        public static final int mnSettings=0x7f080009;
+        public static final int paired=0x7f080006;
         public static final int ppal_container=0x7f080000;
-        public static final int search=0x7f080005;
-        public static final int text=0x7f080001;
-        public static final int textView1=0x7f080007;
-        public static final int turnOff=0x7f080003;
-        public static final int turnOn=0x7f080002;
+        public static final int search=0x7f080007;
+        public static final int text=0x7f080003;
+        public static final int tlabel=0x7f080001;
+        public static final int turnOff=0x7f080005;
+        public static final int turnOn=0x7f080004;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int activity_settings=0x7f030001;
-        public static final int fragment_settings_bluetooth=0x7f030002;
-        public static final int fragment_settings_customize=0x7f030003;
-        public static final int tab1=0x7f030004;
-        public static final int tab2=0x7f030005;
+        public static final int fragment_dialog_inputtext=0x7f030002;
+        public static final int fragment_settings_bluetooth=0x7f030003;
+        public static final int fragment_settings_customize=0x7f030004;
+        public static final int tabs_fragment=0x7f030005;
     }
     public static final class menu {
         public static final int menu_main_activity=0x7f070000;
@@ -67,6 +69,8 @@ public final class R {
         public static final int sBluetoothSettings=0x7f05000b;
         public static final int sCustomize=0x7f05000a;
         public static final int sDelete=0x7f05000f;
+        public static final int sEmpty=0x7f050012;
+        public static final int sIDescritpion_NewRoom=0x7f050013;
         public static final int sNew=0x7f05000e;
         public static final int sSettings=0x7f05000c;
         public static final int sSettingsActivity=0x7f050003;

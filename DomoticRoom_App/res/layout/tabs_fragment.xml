@@ -7,8 +7,12 @@
         tools:context=".DeviceFragment" >
 
     <TextView
+        android:id="@+id/tlabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="hola" />
+        android:layout_gravity="center"
+        android:text="@string/sUnderConstruction"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="32sp" />
 
 </LinearLayout>

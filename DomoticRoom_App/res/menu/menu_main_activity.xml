@@ -15,7 +15,7 @@
     </item>
     <item
         android:id="@+id/mnBluetooth"
-        android:icon="@android:drawable/stat_sys_data_bluetooth"
+        android:icon="@android:drawable/ic_menu_edit"
         android:showAsAction="ifRoom"
         android:title="@string/sBluetooth"/>
     <item
