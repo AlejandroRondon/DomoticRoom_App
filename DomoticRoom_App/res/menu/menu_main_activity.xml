@@ -1,14 +1,32 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.Domoticroomapp.domoticroom_app.MainActivity" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
         android:id="@+id/mnSettings"
-        android:title="@string/action_settings">
+        android:showAsAction="never"
+        android:title="@string/sSettingsActivity">
         <menu>
-            <item android:id="@+id/mnBluetooth" android:title="@string/sBluetooth"/>
-            <item android:id="@+id/mnCustomize" android:title="@string/sCustomize"/>
+            <item
+                android:id="@+id/mnBluetoothSettings"
+                android:title="@string/sBluetoothSettings"/>
+            <item
+                android:id="@+id/mnCustomize"
+                android:title="@string/sCustomize"/>
         </menu>
     </item>
+    <item
+        android:id="@+id/mnBluetooth"
+        android:icon="@android:drawable/stat_sys_data_bluetooth"
+        android:showAsAction="ifRoom"
+        android:title="@string/sBluetooth"/>
+    <item
+        android:id="@+id/mnDelete"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/sDelete"/>
+    <item
+        android:id="@+id/mnNew"
+        android:icon="@android:drawable/ic_menu_add"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/sNew"/>
 
 </menu>

@@ -1,34 +1,28 @@
 package com.Domoticroomapp.domoticroom_app;
 
 
-
+import android.app.ActionBar;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTabHost;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.app.Activity;
+
 
 //jola
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends Activity {
 	final int Intent_KEYWORD = 12345;
-	
-	int fragmentToSet =0;
-	
-    private FragmentTabHost mTabHost;
-
+    int fragmentToSet;
+    TabManager tabManager;
+    final int NumberOfTabs=5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
-        mTabHost = (FragmentTabHost)findViewById(android.R.id.tabhost);
-        mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
-
-        mTabHost.addTab(mTabHost.newTabSpec("tab1").setIndicator("ROOM 1"),
-            Tab1.class, null);
-        mTabHost.addTab(mTabHost.newTabSpec("tab2").setIndicator("ROOM 2"),
-        	Tab2.class, null);
+        tabManager = new TabManager(getActionBar(),NumberOfTabs);
+ 
+      
     }
 
 
@@ -45,7 +39,8 @@ public class MainActivity extends FragmentActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.mnBluetooth) {
+  
+		if (id == R.id.mnBluetoothSettings) {
         	fragmentToSet = R.layout.fragment_settings_bluetooth;
 
         	Intent i = new Intent(this,SettingsActivity.class);
@@ -62,6 +57,20 @@ public class MainActivity extends FragmentActivity {
         	
             return true;
         }
+        if (id == R.id.mnNew) {
+            tabManager.newTab("Room", new Tab1Fragment());
+        	return true;
+        }
+        if (id == R.id.mnDelete) {
+        	tabManager.deleteTab();
+        	return true;
+        }
+        if (id == R.id.mnSettings) {
+        	
+        	return true;
+        }
         return super.onOptionsItemSelected(item);
     }
+    
+
 }
