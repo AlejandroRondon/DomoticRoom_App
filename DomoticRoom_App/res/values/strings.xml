@@ -14,10 +14,8 @@
     <string name="List">List paired Devices</string>
     <string name="Find">Search new Devices / Cancel</string>
     <string name="sUnderConstruction">Under Construction</string>
-    
     <string name="sCustomize">Customize</string>
     <string name="sBluetoothSettings">Bluetooth Settings</string>
-    
     <string name="sSettings">Settings</string>
     <string name="sBluetooth">Bluetooth</string>
     <string name="sNew">New</string>
@@ -26,5 +24,14 @@
     <string name="tab_2">Tab 2</string>
     <string name="sEmpty">Empty</string>
     <string name="sIDescritpion_NewRoom">New Room</string>
+    
+    <string name="sLight">Light</string>
+    <string name="sWindow">Window</string>
+    <string name="sTemperature">Temperature</string>
+    <string name="sDoor">Door</string>
+    <string name="sSwitch">Switch</string>
+    <string name="sMotor">Motor</string>
+    <string name="sServo">Servo</string>
+    <string name="sLcd">LCD</string>
 
 </resources>

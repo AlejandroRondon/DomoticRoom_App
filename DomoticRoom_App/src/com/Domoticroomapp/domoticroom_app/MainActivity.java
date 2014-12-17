@@ -1,14 +1,21 @@
 package com.Domoticroomapp.domoticroom_app;
 
 
+import utilitiesApps.FrameManager;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-import android.app.FragmentManager;
-import dialogsPack.*;
+import dialogsPack.Alert_Dialog;
+import dialogsPack.Confirmation_Dialog;
+import dialogsPack.InputText_Dialog;
+import dialogsPack.SelectionMulti_Dialog;
+import dialogsPack.SelectionSingle_Dialog;
+import dialogsPack.Selection_Dialog;
 
 //jola
 public class MainActivity extends FragmentActivity {
@@ -16,12 +23,13 @@ public class MainActivity extends FragmentActivity {
 	int fragmentToSet;
 	TabManager tabManager;
 	final int NumberOfTabs=5;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		tabManager = new TabManager(getActionBar(),NumberOfTabs,getFragmentManager());
-
+		
 
 		/*Probing Dialog boxes*/
 		//ProbingDialogs();
@@ -76,7 +84,7 @@ public class MainActivity extends FragmentActivity {
 				return true;
 			}
 			if (id == R.id.mnNew) {
-				tabManager.newTab("Room", new TabsFragment());
+				tabManager.newTab("Room", new FragmentTabs());
 				return true;
 			}
 			if (id == R.id.mnDelete) {
@@ -84,7 +92,16 @@ public class MainActivity extends FragmentActivity {
 				return true;
 			}
 			if (id == R.id.mnSettings) {
-
+				String BluetoothFrame_Probe ="$BESLI01WI01TE01DO01SW01MO01SE01LC01LI02WI01TE03DO04";
+				FrameManager frameManager = new FrameManager();
+				if(!frameManager.setFrame(BluetoothFrame_Probe)){
+					Log.w("MainActivity", "Error setFrame");
+				}else{
+					int i;
+					for(i=0;i< frameManager.getNumberComponents();i++){
+						Log.i("MainActivity", frameManager.getBESComponent(i));
+					}
+				}
 				return true;
 			}
 			return super.onOptionsItemSelected(item);
