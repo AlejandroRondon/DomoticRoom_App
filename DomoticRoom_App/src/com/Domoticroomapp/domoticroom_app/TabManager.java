@@ -6,7 +6,6 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.util.Log;
-import android.widget.Toast;
 
 
 public class TabManager {
