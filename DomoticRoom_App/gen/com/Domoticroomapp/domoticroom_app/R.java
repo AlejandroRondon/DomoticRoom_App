@@ -85,6 +85,7 @@ public final class R {
         public static final int Find=0x7f050008;
         public static final int List=0x7f050007;
         /**  BLUETOOTH FRAGMENT STRINGS 
+ BLUETOOTH FRAGMENT STRINGS 
          */
         public static final int Text=0x7f050004;
         public static final int action_settings=0x7f050002;

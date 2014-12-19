@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Habitación Domótica</string>
+    <string name="hello_world">Hola mundo!</string>
+    <string name="action_settings">Configuración</string>
+    <string name="sSettingsActivity">Configuración</string>
+
+    <!-- BLUETOOTH FRAGMENT STRINGS -->
+
+    <string name="Text">Estado: -</string>
+    <string name="on">Encender</string>
+    <string name="off">Apagar</string>
+    <string name="List">Lista de dispositivos conectados</string>
+    <string name="Find">Buscar nuevos dispositivos / Cancelar</string>
+    <string name="sUnderConstruction">En construcción</string>
+    <string name="sCustomize">Personalizar</string>
+    <string name="sBluetoothSettings">Configuración de Bluetooth</string>
+    <string name="sSettings">Configuración</string>
+    <string name="sBluetooth">Bluetooth</string>
+    <string name="sNew">Nuevo</string>
+    <string name="sDelete">Borrar</string>
+    <string name="tab_1">Pestaña 1</string>
+    <string name="tab_2">Pestaña 2</string>
+    <string name="sEmpty">Vacío</string>
+    <string name="sIDescritpion_NewRoom">Nueva Habitación</string>
+    
+    <string name="sLight">Luz</string>
+    <string name="sWindow">Ventana</string>
+    <string name="sTemperature">Temperatura</string>
+    <string name="sDoor">Puerta</string>
+    <string name="sSwitch">Interruptor</string>
+    <string name="sMotor">Motor</string>
+    <string name="sServo">Servo</string>
+    <string name="sLcd">LCD</string>
+
+</resources>
