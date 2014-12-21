@@ -22,37 +22,44 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_door=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int ic_lcd=0x7f020002;
-        public static final int ic_light=0x7f020003;
-        public static final int ic_motor=0x7f020004;
-        public static final int ic_newroom=0x7f020005;
-        public static final int ic_servo=0x7f020006;
-        public static final int ic_switch=0x7f020007;
-        public static final int ic_temperature=0x7f020008;
-        public static final int ic_windows=0x7f020009;
+        public static final int ic_components=0x7f020000;
+        public static final int ic_door=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
+        public static final int ic_lcd=0x7f020003;
+        public static final int ic_light=0x7f020004;
+        public static final int ic_motor=0x7f020005;
+        public static final int ic_newroom=0x7f020006;
+        public static final int ic_servo=0x7f020007;
+        public static final int ic_switch=0x7f020008;
+        public static final int ic_temperature=0x7f020009;
+        public static final int ic_windows=0x7f02000a;
+        public static final int shape_selected=0x7f02000b;
+        public static final int shape_selector=0x7f02000c;
+        public static final int shape_unselected=0x7f02000d;
     }
     public static final class id {
-        public static final int LblAsunto=0x7f08000f;
-        public static final int LblDe=0x7f080010;
         public static final int LstListado=0x7f080008;
         public static final int button1=0x7f080002;
         public static final int eEditText=0x7f080004;
         public static final int fragment1=0x7f080001;
-        public static final int imageView1=0x7f080006;
+        public static final int ivImageComponent=0x7f080006;
         public static final int listView1=0x7f08000e;
-        public static final int mnBluetooth=0x7f080014;
-        public static final int mnBluetoothSettings=0x7f080012;
-        public static final int mnCustomize=0x7f080013;
-        public static final int mnDelete=0x7f080015;
-        public static final int mnNew=0x7f080016;
-        public static final int mnSettings=0x7f080011;
+        public static final int mnBluetooth=0x7f080019;
+        public static final int mnBluetoothSettings=0x7f080013;
+        public static final int mnCustomize=0x7f080014;
+        public static final int mnDelete=0x7f080017;
+        public static final int mnEdit=0x7f080016;
+        public static final int mnNew=0x7f080018;
+        public static final int mnSettings=0x7f080012;
+        public static final int mnUpdate=0x7f080015;
         public static final int paired=0x7f08000c;
         public static final int ppal_container=0x7f080000;
         public static final int search=0x7f08000d;
         public static final int seekBar1=0x7f080007;
+        public static final int tDesComponent=0x7f080011;
+        public static final int tIDComponent=0x7f080010;
         public static final int tTitle=0x7f080005;
+        public static final int tTitleComponent=0x7f08000f;
         public static final int text=0x7f080009;
         public static final int tlabel=0x7f080003;
         public static final int turnOff=0x7f08000b;
@@ -84,6 +91,7 @@ public final class R {
     public static final class string {
         public static final int Find=0x7f050008;
         public static final int List=0x7f050007;
+        public static final int SIDComponent=0x7f05001f;
         /**  BLUETOOTH FRAGMENT STRINGS 
  BLUETOOTH FRAGMENT STRINGS 
          */
@@ -95,9 +103,13 @@ public final class R {
         public static final int on=0x7f050005;
         public static final int sBluetooth=0x7f05000d;
         public static final int sBluetoothSettings=0x7f05000b;
+        public static final int sComponent=0x7f05001c;
+        public static final int sComponentDescription=0x7f05001d;
+        public static final int sComponentImage=0x7f05001e;
         public static final int sCustomize=0x7f05000a;
         public static final int sDelete=0x7f05000f;
         public static final int sDoor=0x7f050017;
+        public static final int sEdit=0x7f050020;
         public static final int sEmpty=0x7f050012;
         public static final int sIDescritpion_NewRoom=0x7f050013;
         public static final int sLcd=0x7f05001b;
@@ -110,6 +122,7 @@ public final class R {
         public static final int sSwitch=0x7f050018;
         public static final int sTemperature=0x7f050016;
         public static final int sUnderConstruction=0x7f050009;
+        public static final int sUpdate=0x7f050021;
         public static final int sWindow=0x7f050015;
         public static final int tab_1=0x7f050010;
         public static final int tab_2=0x7f050011;

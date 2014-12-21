@@ -2,6 +2,9 @@ package utilitiesApps;
 
 import java.util.ArrayList;
 
+import com.Domoticroomapp.domoticroom_app.*;
+
+import android.content.res.Resources;
 import android.util.Log;
 
 public class FrameManager {
@@ -105,11 +108,11 @@ public class FrameManager {
 			return false;
 		}
 	}
-	
+
 	public String getPrefix(String subFrame){
 		return subFrame.substring(0,2); 
 	}
-	
+
 	public String getBESComponent(int index){
 		if(extractionStatus == true){
 			return BESComponents.get(index);
@@ -118,9 +121,41 @@ public class FrameManager {
 			return null;
 		}
 	}
-	
-	
+
+	public ArrayList<RoomComponent> constructRoomComponents(){
+
+		ArrayList<RoomComponent> components = new ArrayList<RoomComponent>();
+		int i;
+		String prefix;
+		for(i=0;i<BESComponents.size();i++)
+		{
+			Log.i("FrameManager", "Constructing RoomComponents array");
+			prefix = getPrefix(BESComponents.get(i));
+			Log.i("FrameManager", "Prefix: "+prefix);
+			if(prefix.equals("LI")){
+				Log.i("FrameManager", "added");
+				components.add(new RoomComponent("Light", BESComponents.get(i), "Component to manage one light",R.drawable.ic_light));
+			}else if(prefix.equals("WI")){
+				components.add(new RoomComponent("Window",BESComponents.get(i), "Component to manage one window",R.drawable.ic_windows));
+			}else if(prefix.equals("DO")){
+				components.add(new RoomComponent("Door", BESComponents.get(i), "Component to manage a door security",R.drawable.ic_door));
+			}else if(prefix.equals("TE")){
+				components.add(new RoomComponent("Temperature", BESComponents.get(i), "Component to manage the temperature",R.drawable.ic_temperature));
+			}else if(prefix.equals("SW")){
+				components.add(new RoomComponent("Switch",BESComponents.get(i), "Component to manage one switch",R.drawable.ic_switch));
+			}else if(prefix.equals("MO")){
+				components.add(new RoomComponent("Motor", BESComponents.get(i), "Component to manage one motor",R.drawable.ic_motor));
+			}else if(prefix.equals("SE")){
+				components.add(new RoomComponent("Servomotor", BESComponents.get(i), "Component to manage one servomotor",R.drawable.ic_servo));
+			}else if(prefix.equals("LC")){
+				components.add(new RoomComponent("LCD", BESComponents.get(i), "Component to manage the LCD display in the master",R.drawable.ic_lcd));
+			}
+		}
 
 
-	
+		return components;
+	}
+
+
+
 }

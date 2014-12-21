@@ -23,12 +23,17 @@ public class MainActivity extends FragmentActivity {
 	int fragmentToSet;
 	TabManager tabManager;
 	final int NumberOfTabs=5;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		tabManager = new TabManager(getActionBar(),NumberOfTabs,getFragmentManager());
+
+		FragmentManager fragmentManager = getFragmentManager();
+		//		FragmentTransaction  fragmentTransaction = fragmentManager.beginTransaction();
+		//		fragmentTransaction.add(android.R.id.content,new FragmentRoomList());
+
 		
 
 		/*Probing Dialog boxes*/
@@ -49,89 +54,99 @@ public class MainActivity extends FragmentActivity {
 		}
 	}
 
-		public void doNegativeClick(String receiveString){
-			Toast.makeText(this, "new name: " + receiveString, Toast.LENGTH_SHORT).show();
-		}
-		@Override
-		public boolean onCreateOptionsMenu(Menu menu) {
-			// Inflate the menu; this adds items to the action bar if it is present.
-			getMenuInflater().inflate(R.menu.menu_main_activity, menu);
+	public void doNegativeClick(String receiveString){
+		Toast.makeText(this, "new name: " + receiveString, Toast.LENGTH_SHORT).show();
+	}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.menu_main_activity, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+
+		if (id == R.id.mnBluetoothSettings) {
+			fragmentToSet = R.layout.fragment_settings_bluetooth;
+
+			Intent i = new Intent(this,SettingsActivity.class);
+			i.putExtra("paramFragmSet",fragmentToSet);
+			startActivityForResult(i, Intent_KEYWORD);
+
 			return true;
 		}
+		if (id == R.id.mnCustomize) {
+			fragmentToSet = R.layout.fragment_settings_customize;
+			Intent i = new Intent(this,SettingsActivity.class);
+			i.putExtra("paramFragmSet",fragmentToSet);
+			startActivityForResult(i, Intent_KEYWORD);
 
-		@Override
-		public boolean onOptionsItemSelected(MenuItem item) {
-			// Handle action bar item clicks here. The action bar will
-			// automatically handle clicks on the Home/Up button, so long
-			// as you specify a parent activity in AndroidManifest.xml.
-			int id = item.getItemId();
-
-			if (id == R.id.mnBluetoothSettings) {
-				fragmentToSet = R.layout.fragment_settings_bluetooth;
-
-				Intent i = new Intent(this,SettingsActivity.class);
-				i.putExtra("paramFragmSet",fragmentToSet);
-				startActivityForResult(i, Intent_KEYWORD);
-
-				return true;
-			}
-			if (id == R.id.mnCustomize) {
-				fragmentToSet = R.layout.fragment_settings_customize;
-				Intent i = new Intent(this,SettingsActivity.class);
-				i.putExtra("paramFragmSet",fragmentToSet);
-				startActivityForResult(i, Intent_KEYWORD);
-
-				return true;
-			}
-			if (id == R.id.mnNew) {
-				tabManager.newTab("Room", new FragmentTabs());
-				return true;
-			}
-			if (id == R.id.mnDelete) {
-				tabManager.deleteTab();
-				return true;
-			}
-			if (id == R.id.mnSettings) {
-				String BluetoothFrame_Probe ="$BESLI01WI01TE01DO01SW01MO01SE01LC01LI02WI01TE03DO04";
-				FrameManager frameManager = new FrameManager();
-				if(!frameManager.setFrame(BluetoothFrame_Probe)){
-					Log.w("MainActivity", "Error setFrame");
-				}else{
-					int i;
-					for(i=0;i< frameManager.getNumberComponents();i++){
-						Log.i("MainActivity", frameManager.getBESComponent(i));
-					}
+			return true;
+		}
+		if (id == R.id.mnNew) {
+			tabManager.newTab("Room",R.drawable.ic_newroom, new FragmentTabs(),true);
+			return true;
+		}
+		if (id == R.id.mnDelete) {
+			tabManager.deleteTab();
+			return true;
+		}
+		if (id == R.id.mnUpdate) {
+			String BluetoothFrame_Probe ="$BESLI01WI01TE01DO01SW01MO01SE01LC01LI02WI01TE03DO04";
+			FrameManager frameManager = new FrameManager();
+			if(!frameManager.setFrame(BluetoothFrame_Probe)){
+				Log.w("MainActivity", "Error setFrame");
+			}else{
+				int i;
+				for(i=0;i< frameManager.getNumberComponents();i++){
+					Log.i("MainActivity", frameManager.getBESComponent(i));
 				}
-				return true;
+//				
+				tabManager.newTab("Components",R.drawable.ic_components, new FragmentRoomList(frameManager.constructRoomComponents()),false);
 			}
-			return super.onOptionsItemSelected(item);
+			return true;
 		}
-
-
-
-		void ProbingDialogs(){
-			/*Probing Dialog boxes*/
-			android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-			Alert_Dialog alert_Dialog = new Alert_Dialog("Information", "Training Alert dialogs", "Ok Master!");
-			alert_Dialog.show(fragmentManager, "tagAlerta");
-			/*--------------------*/
-			FragmentManager fragmentManager2 = getFragmentManager();
-			Confirmation_Dialog  confirmation_Dialog = new Confirmation_Dialog("Information", "Training confirmation dialogs", "Ok Master!","No Master");
-			confirmation_Dialog.show(fragmentManager2,"tagConfirmation");
-			/*--------------------*/
-			String Lista[] = {"A","B","C"};
-			Selection_Dialog selection_Dialog = new Selection_Dialog("Selection", Lista);
-			selection_Dialog.show(fragmentManager2, "tagSelection");
-			/*--------------------*/
-			SelectionSingle_Dialog selectionSingle_Dialog = new SelectionSingle_Dialog("Selection Single", Lista);
-			selectionSingle_Dialog.show(fragmentManager2, "tagSelectionSingle");
-			/*--------------------*/
-			SelectionMulti_Dialog selectionMulti_Dialog = new SelectionMulti_Dialog("Selection  Multi","Ready!", Lista);
-			selectionMulti_Dialog.show(fragmentManager2, "tagSelectionMulti");
-			/*--------------------*/
-			InputText_Dialog getNameRoom_Dialog = new InputText_Dialog("Input text","Name Room","Ok","Cancel");
-			getNameRoom_Dialog.show(fragmentManager2, "tagPersonalizatedDialog");
+		if (id == R.id.mnEdit) {
+			
+			return true;
 		}
-
-
+		if (id == R.id.mnSettings) {
+			
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
+
+
+
+	void ProbingDialogs(){
+		/*Probing Dialog boxes*/
+		android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+		Alert_Dialog alert_Dialog = new Alert_Dialog("Information", "Training Alert dialogs", "Ok Master!");
+		alert_Dialog.show(fragmentManager, "tagAlerta");
+		/*--------------------*/
+		FragmentManager fragmentManager2 = getFragmentManager();
+		Confirmation_Dialog  confirmation_Dialog = new Confirmation_Dialog("Information", "Training confirmation dialogs", "Ok Master!","No Master");
+		confirmation_Dialog.show(fragmentManager2,"tagConfirmation");
+		/*--------------------*/
+		String Lista[] = {"A","B","C"};
+		Selection_Dialog selection_Dialog = new Selection_Dialog("Selection", Lista);
+		selection_Dialog.show(fragmentManager2, "tagSelection");
+		/*--------------------*/
+		SelectionSingle_Dialog selectionSingle_Dialog = new SelectionSingle_Dialog("Selection Single", Lista);
+		selectionSingle_Dialog.show(fragmentManager2, "tagSelectionSingle");
+		/*--------------------*/
+		SelectionMulti_Dialog selectionMulti_Dialog = new SelectionMulti_Dialog("Selection  Multi","Ready!", Lista);
+		selectionMulti_Dialog.show(fragmentManager2, "tagSelectionMulti");
+		/*--------------------*/
+		InputText_Dialog getNameRoom_Dialog = new InputText_Dialog("Input text","Name Room","Ok","Cancel");
+		getNameRoom_Dialog.show(fragmentManager2, "tagPersonalizatedDialog");
+	}
+
+
+}

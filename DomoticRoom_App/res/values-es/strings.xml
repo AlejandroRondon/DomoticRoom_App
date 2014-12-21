@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Habitación Domótica</string>
+    <string name="app_name">Domotic Room</string>
     <string name="hello_world">Hola mundo!</string>
     <string name="action_settings">Configuración</string>
     <string name="sSettingsActivity">Configuración</string>
@@ -20,6 +20,8 @@
     <string name="sBluetooth">Bluetooth</string>
     <string name="sNew">Nuevo</string>
     <string name="sDelete">Borrar</string>
+    <string name="sEdit">Editar</string>
+    <string name="sUpdate">Actualizar</string>
     <string name="tab_1">Pestaña 1</string>
     <string name="tab_2">Pestaña 2</string>
     <string name="sEmpty">Vacío</string>

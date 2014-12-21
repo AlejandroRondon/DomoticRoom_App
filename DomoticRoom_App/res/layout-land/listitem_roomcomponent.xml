@@ -3,7 +3,7 @@
     android:layout_height="fill_parent" >
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/ivImageComponent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_lcd" />
@@ -14,13 +14,13 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/LblAsunto"
+            android:id="@+id/tTitleComponent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="sdasda" />
 
         <TextView
-            android:id="@+id/LblDe"
+            android:id="@+id/tDesComponent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="sdasda" />

@@ -33,5 +33,9 @@
     <string name="sMotor">Motor</string>
     <string name="sServo">Servo</string>
     <string name="sLcd">LCD</string>
+    <string name="sComponent">Component</string>
+    <string name="sComponentDescription">Component description</string>
+    <string name="sComponentImage">Image of Component</string>
+    <string name="SIDComponent">ID</string>
 
 </resources>
