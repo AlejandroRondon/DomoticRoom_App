@@ -1,7 +1,11 @@
 package com.Domoticroomapp.domoticroom_app;
 
 
+import java.util.ArrayList;
+
 import utilitiesApps.FrameManager;
+import TabManager.TabManager;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +13,7 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 import dialogsPack.Alert_Dialog;
 import dialogsPack.Confirmation_Dialog;
@@ -19,27 +24,37 @@ import dialogsPack.Selection_Dialog;
 
 //jola
 public class MainActivity extends FragmentActivity {
-	final int Intent_KEYWORD = 12345;
-	int fragmentToSet;
-	TabManager tabManager;
-	final int NumberOfTabs=5;
-
+	final int Intent_KEYWORD = 12345;		//Key used to transmit information to the settings activity
+	int fragmentToSet;						//Variable used to transmit the fragment to inflate to the settings activity
+	TabManager tabManager;					//the principal manager of tabs in the action bar
+	final int NumberOfTabs=5;				//Number of tabs allowed in the action bar
+	ArrayList<FragmentRoom> rooms = new ArrayList<FragmentRoom>(); //array to save the different fragment rooms created
+	FragmentRoomComponentsList roomcomponents;	//used to save the fragment created when the update button is clicked
+	boolean roomcomponents_created = false;		//indicate if the room was created
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
 		tabManager = new TabManager(getActionBar(),NumberOfTabs,getFragmentManager());
-
-		FragmentManager fragmentManager = getFragmentManager();
-		//		FragmentTransaction  fragmentTransaction = fragmentManager.beginTransaction();
-		//		fragmentTransaction.add(android.R.id.content,new FragmentRoomList());
-
-		
 
 		/*Probing Dialog boxes*/
 		//ProbingDialogs();
 
 	}	
+
+
+	public void movetoroom(View view) {
+		Log.i("FRAGMENTROOMCOMPONENTLIST", "button pressed");
+		
+		
+		rooms.add(new FragmentRoom(roomcomponents.getSelectedItems(view)));
+		
+		tabManager.newTab("Room",R.drawable.ic_newroom,rooms.get(rooms.size()-1),true);
+
+		roomcomponents.deleteSelectedItems(view);
+		
+	}
 	public void onUserSelectValue(String selectedValue) {
 
 		// TODO add your implementation.
@@ -57,6 +72,8 @@ public class MainActivity extends FragmentActivity {
 	public void doNegativeClick(String receiveString){
 		Toast.makeText(this, "new name: " + receiveString, Toast.LENGTH_SHORT).show();
 	}
+
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -64,6 +81,7 @@ public class MainActivity extends FragmentActivity {
 		return true;
 	}
 
+	/*--------------------------------MENU OPTIONS-----------------------------------*/
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
@@ -89,7 +107,11 @@ public class MainActivity extends FragmentActivity {
 			return true;
 		}
 		if (id == R.id.mnNew) {
-			tabManager.newTab("Room",R.drawable.ic_newroom, new FragmentTabs(),true);
+			
+			rooms.add(new FragmentRoom());
+			
+			tabManager.newTab("Room",R.drawable.ic_newroom,rooms.get(rooms.size()-1),true);
+	
 			return true;
 		}
 		if (id == R.id.mnDelete) {
@@ -106,17 +128,24 @@ public class MainActivity extends FragmentActivity {
 				for(i=0;i< frameManager.getNumberComponents();i++){
 					Log.i("MainActivity", frameManager.getBESComponent(i));
 				}
-//				
-				tabManager.newTab("Components",R.drawable.ic_components, new FragmentRoomList(frameManager.constructRoomComponents()),false);
+				
+				if(roomcomponents_created == false){
+					roomcomponents = new FragmentRoomComponentsList(frameManager.constructRoomComponents());
+					tabManager.newTab("Components",R.drawable.ic_components,roomcomponents ,false);
+					roomcomponents_created= true;
+				}else{
+					roomcomponents.AddArrayItems(frameManager.constructRoomComponents());
+					
+				}
 			}
 			return true;
 		}
 		if (id == R.id.mnEdit) {
-			
+			roomcomponents.AddItem(new RoomComponent("new", "new", "new", R.drawable.ic_empty));
 			return true;
 		}
 		if (id == R.id.mnSettings) {
-			
+
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

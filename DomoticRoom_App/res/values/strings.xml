@@ -37,5 +37,6 @@
     <string name="sComponentDescription">Component description</string>
     <string name="sComponentImage">Image of Component</string>
     <string name="SIDComponent">ID</string>
+    <string name="sPassToRoom">Move to room</string>
 
 </resources>
