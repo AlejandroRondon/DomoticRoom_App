@@ -6,11 +6,9 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -18,8 +16,9 @@ import android.widget.TextView;
 
 public class FragmentRoom extends Fragment{
 	//private RoomComponent[] components;
-	private ArrayList<RoomComponent> components = new ArrayList<RoomComponent>();;
+	private ArrayList<RoomComponent> components = new ArrayList<RoomComponent>();
 	private ComponentsAdapter componentsAdapter;
+//	private String roomName;
 	public FragmentRoom() {
 		// TODO Auto-generated constructor stub
 		//this.components = components;

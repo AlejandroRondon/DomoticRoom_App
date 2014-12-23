@@ -98,7 +98,7 @@ public class FragmentRoomComponentsList extends Fragment{
                 //Si valueAt(i) es true, es que estaba seleccionado
                 if (seleccionados.valueAt(i)) {
                     //en keyAt(i) obtengo su posición
-                	auxArray.add(components.get(i));
+                	auxArray.add(components.get(seleccionados.keyAt(i)));
                     resultado.append("component "+seleccionados.keyAt(i)+ " added to array \n");
                 }
     
@@ -126,7 +126,9 @@ public class FragmentRoomComponentsList extends Fragment{
  
             //Recorro my "array" de elementos seleccionados
             final int size=seleccionados.size();
-            for (int i=0; i<size; i++) {
+            for (int i=size-1; i>=0; i--) {
+            	
+            	
                 //Si valueAt(i) es true, es que estaba seleccionado
                 if (seleccionados.valueAt(i)) {
                     //en keyAt(i) obtengo su posición
