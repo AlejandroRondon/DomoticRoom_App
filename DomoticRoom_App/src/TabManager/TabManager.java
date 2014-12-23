@@ -71,6 +71,7 @@ public class TabManager {
 			tabsArray.get(tabsCount).setTabListener(new TabListenerManager(fragment));
 			//Añadimos las pestañas a la action bar
 			abar.addTab( tabsArray.get(tabsCount));
+			abar.selectTab(tabsArray.get(tabsArray.size()-1));
 			tabsCount++;
 			Log.i("TabManager","New tab created, index: " + (tabsCount-1));
 		}

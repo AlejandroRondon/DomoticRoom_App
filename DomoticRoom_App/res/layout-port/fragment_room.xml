@@ -5,11 +5,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".DeviceFragment" >
-    <ListView
-        android:id="@+id/LstListadoroom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
     <TextView
         android:id="@+id/tlabel"
         android:layout_width="wrap_content"
@@ -18,5 +13,10 @@
         android:text="@string/sUnderConstruction"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="32sp" />
+    <ListView
+        android:id="@+id/LstListadoroom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
 
 </LinearLayout>

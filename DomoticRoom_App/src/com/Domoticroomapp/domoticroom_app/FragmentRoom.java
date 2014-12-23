@@ -48,15 +48,17 @@ public class FragmentRoom extends Fragment{
 		componentsAdapter = new ComponentsAdapter(this);
 		lstListado.setAdapter(componentsAdapter);
 		
-		RoomComponent room2 = new RoomComponent("Empty2", "Empty2", "Empty2", R.drawable.ic_empty);
-
-		AddItem(room2);
+//		RoomComponent room2 = new RoomComponent("Empty2", "Empty2", "Empty2", R.drawable.ic_empty);
+//
+//		AddItem(room2);
+//		AddItem(room2);
+//		AddItem(room2);
 	}
 	public boolean AddArrayItems(ArrayList<RoomComponent> componentsToadd){
 		int i,j;
 		boolean found=false;
 		if((componentsToadd.size() == 0)||(componentsToadd == null) ){
-			Log.e("FRAMENTROOMCOMPONENTSLIST","empty array of components");
+			Log.e("FRAMENTROOM","empty array of components");
 			return false;
 		}else{
 			for(i=0;i<componentsToadd.size();i++){
@@ -68,10 +70,10 @@ public class FragmentRoom extends Fragment{
 				}
 				
 				if(found){
-					Log.i("FRAMENTROOMCOMPONENTSLIST","component found");
+					Log.i("FRAMENTROOM","component found");
 					found = false;
 				}else{
-					Log.i("FRAMENTROOMCOMPONENTSLIST","component not found");
+					Log.i("FRAMENTROOM","component not found");
 					AddItem(componentsToadd.get(i));
 				}
 

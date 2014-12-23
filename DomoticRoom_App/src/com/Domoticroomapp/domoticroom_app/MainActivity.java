@@ -31,6 +31,7 @@ public class MainActivity extends FragmentActivity {
 	ArrayList<FragmentRoom> rooms = new ArrayList<FragmentRoom>(); //array to save the different fragment rooms created
 	FragmentRoomComponentsList roomcomponents;	//used to save the fragment created when the update button is clicked
 	boolean roomcomponents_created = false;		//indicate if the room was created
+	ArrayList<RoomComponent> auxiliar = new ArrayList<RoomComponent>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,10 +48,11 @@ public class MainActivity extends FragmentActivity {
 	public void movetoroom(View view) {
 		Log.i("FRAGMENTROOMCOMPONENTLIST", "button pressed");
 		
+		auxiliar=roomcomponents.getSelectedItems(view);
+		rooms.get(0).AddArrayItems(auxiliar);
+		//rooms.add(new FragmentRoom(roomcomponents.getSelectedItems(view)));
 		
-		rooms.add(new FragmentRoom(roomcomponents.getSelectedItems(view)));
-		
-		tabManager.newTab("Room",R.drawable.ic_newroom,rooms.get(rooms.size()-1),true);
+		//tabManager.newTab("Room",R.drawable.ic_newroom,rooms.get(rooms.size()-1),true);
 
 		roomcomponents.deleteSelectedItems(view);
 		
@@ -141,7 +143,10 @@ public class MainActivity extends FragmentActivity {
 			return true;
 		}
 		if (id == R.id.mnEdit) {
-			roomcomponents.AddItem(new RoomComponent("new", "new", "new", R.drawable.ic_empty));
+	//		rooms.get(0).AddArrayItems(auxiliar);
+//			rooms.get(0).AddArrayItems(roomcomponents.getSelectedItems(view)));
+//			rooms.get(0).AddItem(new RoomComponent("new", "new", "new", R.drawable.ic_empty));
+//			roomcomponents.AddItem(new RoomComponent("new", "new", "new", R.drawable.ic_empty));
 			return true;
 		}
 		if (id == R.id.mnSettings) {
