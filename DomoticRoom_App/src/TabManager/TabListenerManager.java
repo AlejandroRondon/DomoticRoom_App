@@ -5,7 +5,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.ActionBar.Tab;
-import android.util.Log;
+//import android.util.Log;
 
 public class TabListenerManager implements ActionBar.TabListener {
 	

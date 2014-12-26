@@ -3,8 +3,6 @@ package utilitiesApps;
 import java.util.ArrayList;
 
 import com.Domoticroomapp.domoticroom_app.*;
-
-import android.content.res.Resources;
 import android.util.Log;
 
 public class FrameManager {

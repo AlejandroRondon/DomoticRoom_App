@@ -157,12 +157,16 @@ public class MainActivity extends FragmentActivity {
 		}
 		if (id == R.id.mnDelete) {
 			Log.v("MENU", "Delete pressed");
-			int indexToDeleted = tabManager.deleteTab();
+			int indexTabDeleted = tabManager.deleteTab();
 			/*check if the tab that will be deleted is the components tab*/
-			if (indexToDeleted != -2){
-				if(indexToDeleted == -1){
+			if (indexTabDeleted != -2){
+				if(indexTabDeleted == -1){
 					roomcomponents_created=false;
+				}else{
+					rooms.remove(indexTabDeleted);//delete fragment associated to the tab
 				}
+			}else{
+				Toast.makeText(this,"There aren't rooms to delete",Toast.LENGTH_SHORT).show();
 			}
 			return true;
 		}
