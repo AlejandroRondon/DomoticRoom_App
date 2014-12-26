@@ -6,6 +6,7 @@
         android:orientation="vertical"
         tools:context=".DeviceFragment" >
     <TextView
+        style="@style/CodeFont"
         android:id="@+id/tlabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

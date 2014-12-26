@@ -9,7 +9,8 @@
         android:layout_height="48dp"
         android:drawableRight="@drawable/ic_movetoroom"
         android:text="@string/sPassToRoom"
-        android:onClick="movetoroom" />
+        android:onClick="movetoroom"
+        android:background="@color/customBlue" />
 
     <ListView
         android:id="@+id/LstListado"

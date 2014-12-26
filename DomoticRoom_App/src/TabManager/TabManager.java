@@ -9,85 +9,88 @@ import android.util.Log;
 
 
 public class TabManager {
-	private ActionBar abar;
-	private int tabsCount;
-	private int tabsAmountLimit;
 
-	FragmentManager fragmentManager ;
-	ArrayList<ActionBar.Tab>  tabsArray= new ArrayList<ActionBar.Tab>();
-	ActionBar.Tab tabComponents;
+	private ActionBar abar;	//instance of an action bar object
+	private int tabsCount;	//tabs counter
+	private int tabsAmountLimit;	//number of tabs allowed
+
+	FragmentManager fragmentManager;//instance of the fragmentmanager
+	ArrayList<ActionBar.Tab>  tabsArray= new ArrayList<ActionBar.Tab>();//array to save the rooms tabs
+	ActionBar.Tab tabComponents;//single variable to save the room components
+
 	/*CONSTRUCTOR*/
 	public TabManager(ActionBar actionBar,int AmountLimit,FragmentManager fragmentManager){	//the fragment manager is neccesary to the dialog text input
 		tabsAmountLimit=AmountLimit;
 		this.fragmentManager = fragmentManager;
 		tabsCount =0;
-		//Obtenemos una referencia a la actionbar
+		//get the reference to the action bar
 		abar = actionBar;
-		
-		//Establecemos el modo de navegación por pestañas
-		abar.setNavigationMode(
-				ActionBar.NAVIGATION_MODE_TABS);
+		//Establish the navigation mode in the action bar
+		abar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		//activate the icon button in the application bar name
 		abar.setDisplayHomeAsUpEnabled(true);
-		
+
 	}
 
-	public boolean newTab(String defaultTabName,int icon,Fragment fragment,boolean editDefaultTitle)
+	public boolean newTab(String defaultTabName,int icon,Fragment fragment,boolean roomORcomponents)
 	{	
 		Log.i("TabManager","Creating New Tab...");
 
 		int i,j=0;	//simply counters
 		boolean wasFoundName=false;//flag to indicate if the name exist in any tab
-		
+
 		String defaultTabNamePlus =defaultTabName.concat(" ["+(j)+"]");// adding the index tab to the default tab name
 		ActionBar.Tab newTab; //new tab to add at the action bar
-		ActionBar.Tab auxTab;
-		if(tabsCount<tabsAmountLimit){
 
-			if(editDefaultTitle == true){
-				InputText_Dialog getNameRoom_Dialog = new InputText_Dialog("New Room","Name","Ok","Cancel");
-				getNameRoom_Dialog.show(fragmentManager, "tagPersonalizatedDialog");
+		if(tabsCount<tabsAmountLimit){	//verify if the action bar is full
 
-				/*search in the tabs any tab with the same default name */
-				
-				Log.i("TabManager", "finding defaut name to the new tab");
-				for(j=0;j<tabsAmountLimit;j++){
-					defaultTabNamePlus=defaultTabName+" ["+(j+1)+"]";
-					for(i=0;i<tabsCount;i++){
-						if((tabsArray.get(i).getText().equals(defaultTabNamePlus))){
-							//Log.i("TabManager", "was found in [" + i+ "]");
-							wasFoundName=true;
-							break;
-						}
-
-					}
-					if(wasFoundName == false){
+			/*search in the tabs any tab with the same default name */
+			Log.i("TabManager", "finding defaut name to the new tab");
+			for(j=0;j<tabsAmountLimit;j++){
+				defaultTabNamePlus=defaultTabName+" ["+(j+1)+"]";
+				for(i=0;i<tabsCount;i++){
+					if((tabsArray.get(i).getText().equals(defaultTabNamePlus))){
+						//Log.i("TabManager", "was found in [" + i+ "]");
+						wasFoundName=true;
 						break;
-					}else{
-						wasFoundName = false;
 					}
 
 				}
-				newTab=abar.newTab().setText(defaultTabNamePlus).setIcon(icon);
-			}else{
-				newTab=abar.newTab().setText(defaultTabName).setIcon(icon);
+				if(wasFoundName == false){
+					break;
+				}else{
+					wasFoundName = false;
+				}
 
 			}
 			//Creamos las pestañas y la agregamos al arraylist
-		
-			tabsArray.add(newTab);
-			//Asociamos los listener a las pestañas
-			tabsArray.get(tabsCount).setTabListener(new TabListenerManager(fragment));
-			
-			
-			if(editDefaultTitle == true){
+			if(roomORcomponents == true){
+				//Creating dialog to input the new name
+				InputText_Dialog getNameRoom_Dialog = new InputText_Dialog("New Room","Name","Ok","Cancel");
+				getNameRoom_Dialog.show(fragmentManager, "tagPersonalizatedDialog");
+				newTab=abar.newTab().setText(defaultTabNamePlus).setIcon(icon);
+				/**/
+				tabsArray.add(newTab);
+				//Asociamos los listener a las pestañas
+				tabsArray.get(tabsCount).setTabListener(new TabListenerManager(fragment));
+				//Añadimos las pestañas a la action bar
 				abar.addTab( tabsArray.get(tabsCount),0);
+				abar.selectTab(tabsArray.get(tabsArray.size()-1));
+				tabsCount++;
+				Log.i("TabManager","...New tab created, index: " + (tabsCount-1) + " ,default name: " + tabsArray.get(tabsArray.size()-1).getText().toString());
 			}else{
-				abar.addTab( tabsArray.get(tabsCount));
+				newTab=abar.newTab().setText(defaultTabName).setIcon(icon);
+				/**/
+				tabComponents = newTab;
+				//Asociamos los listener a las pestañas
+				tabComponents.setTabListener(new TabListenerManager(fragment));
+				//Añadimos las pestañas a la action bar
+				abar.addTab( tabComponents);
+				abar.selectTab(tabComponents);
+				Log.i("TabManager","...New Components tab created");
+
 			}
-			//Añadimos las pestañas a la action bar
-			abar.selectTab(tabsArray.get(tabsArray.size()-1));
-			tabsCount++;
-			Log.i("TabManager","...New tab created, index: " + (tabsCount-1) + " ,default name: " + tabsArray.get(tabsArray.size()-1).getText().toString());
+
 		}else{
 			Log.e("TabManager","Limit number of tabs has already been created" );
 		}	
@@ -95,14 +98,26 @@ public class TabManager {
 		return true;
 	}
 
-	public void deleteTab(){
-		if(tabsCount>0){
-			ActionBar.Tab tabToDelete =	abar.getSelectedTab();
+	public int deleteTab(){	//return index of the tab deleted,-1 if the tab deleted is the components tab,-2 if there are not tabs to delete
+		Log.i("TabManager","Deleting selected Tab...");
+		ActionBar.Tab tabToDelete =	abar.getSelectedTab();
+		if(tabToDelete != null){
 			abar.removeTab(tabToDelete);
-			int indexTabToDelete  = tabsArray.lastIndexOf(tabToDelete);
-			tabsArray.remove(indexTabToDelete);
-			tabsCount--;
-			Log.i("TabManager","Tab deleted, Actual index: " + (tabsCount-1));
+			if(!tabToDelete.getText().toString().equals("Components")){
+				//if(tabsCount>0){
+					int indexTabToDelete  = tabsArray.lastIndexOf(tabToDelete);
+					tabsArray.remove(indexTabToDelete);
+					tabsCount--;
+					Log.i("TabManager","Tab deleted, Actual index: " + (tabsCount-1));
+					return indexTabToDelete;
+				//}
+			}else{
+				Log.i("TabManager","Components tab deleted");
+				return -1;
+			}
+		}else{
+			Log.e("TabManager","Aborting delete Tab(there isn't tab selected)");
+			return -2;
 		}
 	}
 	public void changeNameTab(int index,String newName){
@@ -118,7 +133,7 @@ public class TabManager {
 			titles.add( tabsArray.get(i).getText().toString());
 		}
 		return titles;
-				
+
 	}
 
 	public int getTabsCount() {
@@ -128,15 +143,15 @@ public class TabManager {
 	public String getTabName(int index) {
 		return tabsArray.get(index).getText().toString();
 	}
-	
+
 	public ActionBar.Tab getCurrentTab(){
 		return abar.getSelectedTab();
 	}
 
 
-	
-	
-	
+
+
+
 
 
 

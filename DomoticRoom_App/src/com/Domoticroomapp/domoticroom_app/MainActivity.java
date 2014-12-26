@@ -28,8 +28,8 @@ public class MainActivity extends FragmentActivity {
 	final int NumberOfTabs=5;				//Number of tabs allowed in the action bar
 	ArrayList<FragmentRoom> rooms = new ArrayList<FragmentRoom>(); //array to save the different fragment rooms created
 	FragmentRoomComponentsList roomcomponents;	//used to save the fragment created when the update button is clicked
-	boolean roomcomponents_created = false;		//indicate if the room was created
-	/*Fragments manager*/
+	boolean roomcomponents_created = false;		//indicate if the room components was created
+	/*Get Fragments manager in the different versions*/
 	FragmentManager fragmentManager = getFragmentManager();
 	android.support.v4.app.FragmentManager fragmentManagerCompat = getSupportFragmentManager();	//compatibility API
 
@@ -150,18 +150,20 @@ public class MainActivity extends FragmentActivity {
 		/*------------------------------------------------------------------------------------*/		
 		if (id == R.id.mnNew) {
 			Log.v("MENU", "New pressed");
-				rooms.add(new FragmentRoom());
-				tabManager.newTab("Room",R.drawable.ic_newroom,rooms.get(rooms.size()-1),true);
+			rooms.add(new FragmentRoom());
+			tabManager.newTab("Room",R.drawable.ic_newroom,rooms.get(rooms.size()-1),true);
 
 			return true;
 		}
 		if (id == R.id.mnDelete) {
 			Log.v("MENU", "Delete pressed");
+			int indexToDeleted = tabManager.deleteTab();
 			/*check if the tab that will be deleted is the components tab*/
-			if(tabManager.getCurrentTab().getText().toString().equals("Components")){
-				roomcomponents_created=false;
+			if (indexToDeleted != -2){
+				if(indexToDeleted == -1){
+					roomcomponents_created=false;
+				}
 			}
-			tabManager.deleteTab();
 			return true;
 		}
 		if (id == R.id.mnUpdate) {

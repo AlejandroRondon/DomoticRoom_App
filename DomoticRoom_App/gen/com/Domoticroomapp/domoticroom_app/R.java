@@ -8,7 +8,23 @@
 package com.Domoticroomapp.domoticroom_app;
 
 public final class R {
+    public static final class array {
+        public static final int androidcolors=0x7f050000;
+    }
     public static final class attr {
+    }
+    public static final class color {
+        public static final int blue=0x7f040000;
+        public static final int customBlue=0x7f04000a;
+        public static final int darkblue=0x7f040005;
+        public static final int darkgreen=0x7f040007;
+        public static final int darkorange=0x7f040008;
+        public static final int darkpurple=0x7f040006;
+        public static final int darkred=0x7f040009;
+        public static final int green=0x7f040002;
+        public static final int orange=0x7f040003;
+        public static final int purple=0x7f040001;
+        public static final int red=0x7f040004;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -18,8 +34,8 @@ public final class R {
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
     
          */
-        public static final int activity_horizontal_margin=0x7f040000;
-        public static final int activity_vertical_margin=0x7f040001;
+        public static final int activity_horizontal_margin=0x7f060000;
+        public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
         public static final int fragment_light_head=0x7f020000;
@@ -41,33 +57,33 @@ public final class R {
         public static final int shape_unselected=0x7f020010;
     }
     public static final class id {
-        public static final int LstListado=0x7f080009;
-        public static final int LstListadoroom=0x7f080008;
-        public static final int bMovetoroom=0x7f080002;
-        public static final int eEditText=0x7f080004;
-        public static final int fragment1=0x7f080001;
-        public static final int ivImageComponent=0x7f080006;
-        public static final int listView1=0x7f08000f;
-        public static final int mnBluetooth=0x7f08001a;
-        public static final int mnBluetoothSettings=0x7f080014;
-        public static final int mnCustomize=0x7f080015;
-        public static final int mnDelete=0x7f080018;
-        public static final int mnEdit=0x7f080017;
-        public static final int mnNew=0x7f080019;
-        public static final int mnSettings=0x7f080013;
-        public static final int mnUpdate=0x7f080016;
-        public static final int paired=0x7f08000d;
-        public static final int ppal_container=0x7f080000;
-        public static final int search=0x7f08000e;
-        public static final int seekBar1=0x7f080007;
-        public static final int tDesComponent=0x7f080012;
-        public static final int tIDComponent=0x7f080011;
-        public static final int tTitle=0x7f080005;
-        public static final int tTitleComponent=0x7f080010;
-        public static final int text=0x7f08000a;
-        public static final int tlabel=0x7f080003;
-        public static final int turnOff=0x7f08000c;
-        public static final int turnOn=0x7f08000b;
+        public static final int LstListado=0x7f0a0009;
+        public static final int LstListadoroom=0x7f0a0008;
+        public static final int bMovetoroom=0x7f0a0002;
+        public static final int eEditText=0x7f0a0004;
+        public static final int fragment1=0x7f0a0001;
+        public static final int ivImageComponent=0x7f0a0006;
+        public static final int listView1=0x7f0a000f;
+        public static final int mnBluetooth=0x7f0a001a;
+        public static final int mnBluetoothSettings=0x7f0a0014;
+        public static final int mnCustomize=0x7f0a0015;
+        public static final int mnDelete=0x7f0a0018;
+        public static final int mnEdit=0x7f0a0017;
+        public static final int mnNew=0x7f0a0019;
+        public static final int mnSettings=0x7f0a0013;
+        public static final int mnUpdate=0x7f0a0016;
+        public static final int paired=0x7f0a000d;
+        public static final int ppal_container=0x7f0a0000;
+        public static final int search=0x7f0a000e;
+        public static final int seekBar1=0x7f0a0007;
+        public static final int tDesComponent=0x7f0a0012;
+        public static final int tIDComponent=0x7f0a0011;
+        public static final int tTitle=0x7f0a0005;
+        public static final int tTitleComponent=0x7f0a0010;
+        public static final int text=0x7f0a000a;
+        public static final int tlabel=0x7f0a0003;
+        public static final int turnOff=0x7f0a000c;
+        public static final int turnOn=0x7f0a000b;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -90,48 +106,48 @@ public final class R {
         public static final int listitem_roomcomponent=0x7f030011;
     }
     public static final class menu {
-        public static final int menu_main_activity=0x7f070000;
-        public static final int menu_settings_activity=0x7f070001;
+        public static final int menu_main_activity=0x7f090000;
+        public static final int menu_settings_activity=0x7f090001;
     }
     public static final class string {
-        public static final int Find=0x7f050008;
-        public static final int List=0x7f050007;
-        public static final int SIDComponent=0x7f05001f;
+        public static final int Find=0x7f070008;
+        public static final int List=0x7f070007;
+        public static final int SIDComponent=0x7f07001f;
         /**  BLUETOOTH FRAGMENT STRINGS 
  BLUETOOTH FRAGMENT STRINGS 
          */
-        public static final int Text=0x7f050004;
-        public static final int action_settings=0x7f050002;
-        public static final int app_name=0x7f050000;
-        public static final int hello_world=0x7f050001;
-        public static final int off=0x7f050006;
-        public static final int on=0x7f050005;
-        public static final int sBluetooth=0x7f05000d;
-        public static final int sBluetoothSettings=0x7f05000b;
-        public static final int sComponent=0x7f05001c;
-        public static final int sComponentDescription=0x7f05001d;
-        public static final int sComponentImage=0x7f05001e;
-        public static final int sCustomize=0x7f05000a;
-        public static final int sDelete=0x7f05000f;
-        public static final int sDoor=0x7f050017;
-        public static final int sEdit=0x7f050021;
-        public static final int sEmpty=0x7f050012;
-        public static final int sIDescritpion_NewRoom=0x7f050013;
-        public static final int sLcd=0x7f05001b;
-        public static final int sLight=0x7f050014;
-        public static final int sMotor=0x7f050019;
-        public static final int sNew=0x7f05000e;
-        public static final int sPassToRoom=0x7f050020;
-        public static final int sServo=0x7f05001a;
-        public static final int sSettings=0x7f05000c;
-        public static final int sSettingsActivity=0x7f050003;
-        public static final int sSwitch=0x7f050018;
-        public static final int sTemperature=0x7f050016;
-        public static final int sUnderConstruction=0x7f050009;
-        public static final int sUpdate=0x7f050022;
-        public static final int sWindow=0x7f050015;
-        public static final int tab_1=0x7f050010;
-        public static final int tab_2=0x7f050011;
+        public static final int Text=0x7f070004;
+        public static final int action_settings=0x7f070002;
+        public static final int app_name=0x7f070000;
+        public static final int hello_world=0x7f070001;
+        public static final int off=0x7f070006;
+        public static final int on=0x7f070005;
+        public static final int sBluetooth=0x7f07000d;
+        public static final int sBluetoothSettings=0x7f07000b;
+        public static final int sComponent=0x7f07001c;
+        public static final int sComponentDescription=0x7f07001d;
+        public static final int sComponentImage=0x7f07001e;
+        public static final int sCustomize=0x7f07000a;
+        public static final int sDelete=0x7f07000f;
+        public static final int sDoor=0x7f070017;
+        public static final int sEdit=0x7f070021;
+        public static final int sEmpty=0x7f070012;
+        public static final int sIDescritpion_NewRoom=0x7f070013;
+        public static final int sLcd=0x7f07001b;
+        public static final int sLight=0x7f070014;
+        public static final int sMotor=0x7f070019;
+        public static final int sNew=0x7f07000e;
+        public static final int sPassToRoom=0x7f070020;
+        public static final int sServo=0x7f07001a;
+        public static final int sSettings=0x7f07000c;
+        public static final int sSettingsActivity=0x7f070003;
+        public static final int sSwitch=0x7f070018;
+        public static final int sTemperature=0x7f070016;
+        public static final int sUnderConstruction=0x7f070009;
+        public static final int sUpdate=0x7f070022;
+        public static final int sWindow=0x7f070015;
+        public static final int tab_1=0x7f070010;
+        public static final int tab_2=0x7f070011;
     }
     public static final class style {
         /** 
@@ -155,10 +171,17 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
+        public static final int AppTheme=0x7f080001;
+        public static final int CodeFont=0x7f080005;
+        public static final int CodeFont_Red=0x7f080006;
+        public static final int CustomTheme=0x7f080002;
+        public static final int CustumButtonStyle=0x7f080008;
+        public static final int etStyle=0x7f080004;
+        public static final int tvDescription=0x7f080007;
+        public static final int tvStyle=0x7f080003;
     }
 }

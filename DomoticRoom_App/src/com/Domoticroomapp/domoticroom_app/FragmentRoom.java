@@ -1,7 +1,6 @@
 package com.Domoticroomapp.domoticroom_app;
 
 import java.util.ArrayList;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
@@ -21,9 +20,10 @@ public class FragmentRoom extends Fragment{
 //	private String roomName;
 	public FragmentRoom() {
 		// TODO Auto-generated constructor stub
-		//this.components = components;
-		RoomComponent room = new RoomComponent("Empty", "Empty", "Empty", R.drawable.ic_empty);
-		components.add(room);
+		
+		/*Probe component*/
+		//RoomComponent room = new RoomComponent("Empty", "Empty", "Empty", R.drawable.ic_empty);
+		//components.add(room);
 	}
 	public FragmentRoom(ArrayList<RoomComponent> components) {
 		// TODO Auto-generated constructor stub
@@ -46,12 +46,7 @@ public class FragmentRoom extends Fragment{
 		lstListado = (ListView)getView().findViewById(R.id.LstListadoroom);
 		componentsAdapter = new ComponentsAdapter(this);
 		lstListado.setAdapter(componentsAdapter);
-		
-//		RoomComponent room2 = new RoomComponent("Empty2", "Empty2", "Empty2", R.drawable.ic_empty);
-//
-//		AddItem(room2);
-//		AddItem(room2);
-//		AddItem(room2);
+
 	}
 	public boolean AddArrayItems(ArrayList<RoomComponent> componentsToadd){
 		int i,j;
