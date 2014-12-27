@@ -8,6 +8,7 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,6 +38,18 @@ public class MainActivity extends FragmentActivity {
 	ArrayList<RoomComponent> auxiliar = new ArrayList<RoomComponent>();
 
 
+	  /**
+     * The pager widget, which handles animation and allows swiping horizontally
+     * to access previous and next pages.
+     */
+    ViewPager pager = null;
+ 
+    /**
+     * The pager adapter, which provides the pages to the view pager widget.
+     */
+    MyFragmentPagerAdapter pagerAdapter;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,10 +61,39 @@ public class MainActivity extends FragmentActivity {
 		Log.i("MainActivity", "Tabs manager Created");
 		tabManager = new TabManager(getActionBar(),NumberOfTabs,getFragmentManager());
 
+		
+		
+		 // Instantiate a ViewPager
+        this.pager = (ViewPager) this.findViewById(R.id.pager);
+ 
+        // Create an adapter with the fragments we show on the ViewPager
+        MyFragmentPagerAdapter adapter = new MyFragmentPagerAdapter(
+                getSupportFragmentManager());
+        adapter.addFragment(ScreenSlidePageFragment.newInstance(getResources()
+                .getColor(R.color.darkgreen), 0));
+        adapter.addFragment(ScreenSlidePageFragment.newInstance(getResources()
+                .getColor(R.color.darkorange), 1));
+        adapter.addFragment(ScreenSlidePageFragment.newInstance(getResources()
+                .getColor(R.color.darkblue), 2));
+        adapter.addFragment(ScreenSlidePageFragment.newInstance(getResources()
+                .getColor(R.color.red), 3));
+        adapter.addFragment(ScreenSlidePageFragment.newInstance(getResources()
+                .getColor(R.color.orange), 4));
+        this.pager.setAdapter(adapter);
 		/*Probing Dialog boxes*/
 		//ProbingDialogs();
 
 	}	
+    @Override
+    public void onBackPressed() {
+ 
+        // Return to previous page when we press back button
+        if (this.pager.getCurrentItem() == 0)
+            super.onBackPressed();
+        else
+            this.pager.setCurrentItem(this.pager.getCurrentItem() - 1);
+ 
+    }
 
 	/*--------------------------------------Functions (SLOTS)-------------------------------------*/
 	public void movetoroom(View view) {
