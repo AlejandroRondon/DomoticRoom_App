@@ -36,21 +36,15 @@ public class MainActivity extends FragmentActivity {
 	/*Get Fragments manager in the different versions*/
 	FragmentManager fragmentManager = getFragmentManager();
 	android.support.v4.app.FragmentManager fragmentManagerCompat = getSupportFragmentManager();	//compatibility API
-
+	/* The pager widget, which handles animation and allows swiping horizontally
+	 * to access previous and next pages.*/
+	ViewPager pager = null;
+	/*The pager adapter, which provides the pages to the view pager widget.*/
+	ViewPagerAdapter viewPagerAdapter;
 
 	ArrayList<RoomComponent> auxiliar = new ArrayList<RoomComponent>();
 
-
-	/**
-	 * The pager widget, which handles animation and allows swiping horizontally
-	 * to access previous and next pages.
-	 */
-	ViewPager pager = null;
-
-	/**
-	 * The pager adapter, which provides the pages to the view pager widget.
-	 */
-	ViewPagerAdapter viewPagerAdapter;
+	ArrayList<ArrayList<android.support.v4.app.Fragment>> fragmentComponents = new ArrayList<ArrayList<Fragment>>();
 
 
 	@Override
@@ -110,7 +104,7 @@ public class MainActivity extends FragmentActivity {
 
 		SelectionSingle_Dialog roomsSelection = new  SelectionSingle_Dialog("Rooms", tabManager.getTabsTitles(),"OK","CANCEL");
 		roomsSelection.show(fragmentManager,"rooms selector");
-
+		/*later of here --> onUserSelectValue*/
 
 	}
 	public void onUserSelectValue(String selectedValue) {
@@ -313,6 +307,10 @@ public class MainActivity extends FragmentActivity {
 	public void RemoveAllPages(){
 		viewPagerAdapter.removeAllFragments();
 		viewPagerAdapter.notifyDataSetChanged();
+	}
+	public void replaceAllPages(ArrayList<Fragment> fragmentsToAdd){
+		RemoveAllPages();
+		AddPagesPackage(fragmentsToAdd);
 	}
 	public void ViewPagerSHOW(){
 		this.pager.setVisibility(View.VISIBLE);

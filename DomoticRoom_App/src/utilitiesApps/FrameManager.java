@@ -107,7 +107,7 @@ public class FrameManager {
 		}
 	}
 
-	public String getPrefix(String subFrame){
+	static public String getPrefix(String subFrame){
 		return subFrame.substring(0,2); 
 	}
 

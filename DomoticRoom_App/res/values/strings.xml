@@ -26,11 +26,17 @@
     <string name="sIDescritpion_NewRoom">New Room</string>
     
     <string name="sLight">Light</string>
+    <string name="sLightImDescription">Toggle On/Off Light</string>
     <string name="sWindow">Window</string>
-    <string name="sTemperature">Temperature</string>
-    <string name="sDoor">Door</string>
+    <string name="sWindowHeight">Height</string>
+    <string name="sWindowOpening">Opening</string><string name="sWindowImDescriptionHeight">Toggle Low/High Window Height</string>
+    <string name="sWindowImDescriptionOpening">Toggle Open/Closed Window</string><string name="sTemperature">Temperature</string>
+    <string name="sTemperatureImDescription">Toogle On/Off Ventilation</string><string name="sTemperatureSetPoint">Set Point</string><string name="sDoor">Door</string>
+    <string name="sDoorImDescription">Toggle Open/Closed Door</string>
+    <string name="sUserName">User Name</string>
+    <string name="sPassword">Password</string>
     <string name="sSwitch">Switch</string>
-    <string name="sMotor">Motor</string>
+    <string name="sSwitchImDescription">Toggle On/Off Switch</string><string name="sMotor">Motor</string>
     <string name="sServo">Servo</string>
     <string name="sLcd">LCD</string>
     <string name="sComponent">Component</string>
@@ -38,5 +44,10 @@
     <string name="sComponentImage">Image of Component</string>
     <string name="SIDComponent">ID</string>
     <string name="sPassToRoom">Move to room</string>
+    
+    
+    
+    
+    
 
 </resources>
