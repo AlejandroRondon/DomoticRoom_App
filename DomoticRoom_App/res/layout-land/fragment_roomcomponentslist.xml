@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Button
+        android:id="@+id/bMovetoroom"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:drawableRight="@drawable/ic_movetoroom"
+        android:text="@string/sPassToRoom"
+        android:onClick="movetoroom"
+        android:background="@color/customBlue" />
 
     <ListView
         android:id="@+id/LstListado"

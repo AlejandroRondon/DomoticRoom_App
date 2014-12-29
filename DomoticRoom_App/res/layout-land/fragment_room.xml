@@ -5,14 +5,19 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".DeviceFragment" >
-
-    <TextView
+<!--     <TextView
+        style="@style/CodeFont"
         android:id="@+id/tlabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/sUnderConstruction"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="32sp" />
+        android:textSize="32sp" /> -->
+    <ListView
+        android:id="@+id/LstListadoroom"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content" >
+    </ListView>
 
 </LinearLayout>

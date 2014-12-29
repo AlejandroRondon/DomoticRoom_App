@@ -22,8 +22,8 @@ public class FragmentRoom extends Fragment{
 		// TODO Auto-generated constructor stub
 		
 		/*Probe component*/
-		//RoomComponent room = new RoomComponent("Empty", "Empty", "Empty", R.drawable.ic_empty);
-		//components.add(room);
+		RoomComponent room = new RoomComponent("Empty", "Empty", "Empty", R.drawable.ic_empty);
+		components.add(room);
 	}
 	public FragmentRoom(ArrayList<RoomComponent> components) {
 		// TODO Auto-generated constructor stub

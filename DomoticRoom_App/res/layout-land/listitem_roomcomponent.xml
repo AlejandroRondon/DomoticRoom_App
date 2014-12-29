@@ -1,29 +1,44 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.Domoticroomapp.domoticroom_app.CheckedLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:background="@drawable/shape_selector" >
 
     <ImageView
         android:id="@+id/ivImageComponent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/sComponentImage"
         android:src="@drawable/ic_lcd" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/tTitleComponent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="sdasda" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tTitleComponent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sComponent"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/tIDComponent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/SIDComponent" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tDesComponent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="sdasda" />
+            android:text="@string/sComponentDescription" />
     </LinearLayout>
 
-</LinearLayout>
+</com.Domoticroomapp.domoticroom_app.CheckedLinearLayout>

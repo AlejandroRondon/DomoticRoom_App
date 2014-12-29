@@ -4,9 +4,11 @@ package com.Domoticroomapp.domoticroom_app;
 import java.util.ArrayList;
 import utilitiesApps.FrameManager;
 import TabManager.TabManager;
+import ViewPagerManager.ViewPagerAdapter;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -23,6 +25,7 @@ import dialogsPack.Selection_Dialog;
 
 public class MainActivity extends FragmentActivity {
 
+
 	final int Intent_KEYWORD = 12345;		//Key used to transmit information to the settings activity
 	int fragmentToSet;						//Variable used to transmit the fragment to inflate to the settings activity
 	TabManager tabManager;					//the principal manager of tabs in the action bar
@@ -38,18 +41,18 @@ public class MainActivity extends FragmentActivity {
 	ArrayList<RoomComponent> auxiliar = new ArrayList<RoomComponent>();
 
 
-	  /**
-     * The pager widget, which handles animation and allows swiping horizontally
-     * to access previous and next pages.
-     */
-    ViewPager pager = null;
- 
-    /**
-     * The pager adapter, which provides the pages to the view pager widget.
-     */
-    MyFragmentPagerAdapter pagerAdapter;
-	
-	
+	/**
+	 * The pager widget, which handles animation and allows swiping horizontally
+	 * to access previous and next pages.
+	 */
+	ViewPager pager = null;
+
+	/**
+	 * The pager adapter, which provides the pages to the view pager widget.
+	 */
+	ViewPagerAdapter viewPagerAdapter;
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -61,39 +64,45 @@ public class MainActivity extends FragmentActivity {
 		Log.i("MainActivity", "Tabs manager Created");
 		tabManager = new TabManager(getActionBar(),NumberOfTabs,getFragmentManager());
 
-		
-		
-		 // Instantiate a ViewPager
-        this.pager = (ViewPager) this.findViewById(R.id.pager);
- 
-        // Create an adapter with the fragments we show on the ViewPager
-        MyFragmentPagerAdapter adapter = new MyFragmentPagerAdapter(
-                getSupportFragmentManager());
-        adapter.addFragment(ScreenSlidePageFragment.newInstance(getResources()
-                .getColor(R.color.darkgreen), 0));
-        adapter.addFragment(ScreenSlidePageFragment.newInstance(getResources()
-                .getColor(R.color.darkorange), 1));
-        adapter.addFragment(ScreenSlidePageFragment.newInstance(getResources()
-                .getColor(R.color.darkblue), 2));
-        adapter.addFragment(ScreenSlidePageFragment.newInstance(getResources()
-                .getColor(R.color.red), 3));
-        adapter.addFragment(ScreenSlidePageFragment.newInstance(getResources()
-                .getColor(R.color.orange), 4));
-        this.pager.setAdapter(adapter);
+
+
+		// Instantiate a ViewPager
+		pager = (ViewPager) findViewById(R.id.pager);
+		// Create an adapter with the fragments we show on the ViewPager
+		viewPagerAdapter = new ViewPagerAdapter(
+				fragmentManagerCompat);
+		this.pager.setAdapter(viewPagerAdapter);
+		ArrayList<android.support.v4.app.Fragment> pages = new ArrayList<android.support.v4.app.Fragment>();
+
+
+		pages.add(ScreenSlidePageFragment.newInstance(getResources()
+				.getColor(R.color.darkgreen), 0));
+		pages.add(ScreenSlidePageFragment.newInstance(getResources()
+				.getColor(R.color.darkorange), 1));
+		pages.add(ScreenSlidePageFragment.newInstance(getResources()
+				.getColor(R.color.darkblue), 2));
+		pages.add(ScreenSlidePageFragment.newInstance(getResources()
+				.getColor(R.color.red), 3));
+		pages.add(ScreenSlidePageFragment.newInstance(getResources()
+				.getColor(R.color.orange), 4));
+
+		AddPagesPackage(pages);
+
+
 		/*Probing Dialog boxes*/
 		//ProbingDialogs();
 
 	}	
-    @Override
-    public void onBackPressed() {
- 
-        // Return to previous page when we press back button
-        if (this.pager.getCurrentItem() == 0)
-            super.onBackPressed();
-        else
-            this.pager.setCurrentItem(this.pager.getCurrentItem() - 1);
- 
-    }
+	@Override
+	public void onBackPressed() {
+
+		// Return to previous page when we press back button
+		if (this.pager.getCurrentItem() == 0)
+			super.onBackPressed();
+		else
+			this.pager.setCurrentItem(this.pager.getCurrentItem() - 1);
+
+	}
 
 	/*--------------------------------------Functions (SLOTS)-------------------------------------*/
 	public void movetoroom(View view) {
@@ -241,6 +250,11 @@ public class MainActivity extends FragmentActivity {
 		}
 		if (id == R.id.mnEdit) {
 			Log.v("MENU", "Edit pressed");
+			if(this.pager.getVisibility()==View.GONE){
+				this.pager.setVisibility(View.VISIBLE);
+			}else{
+				this.pager.setVisibility(View.GONE);
+			}
 			return true;
 		}
 
@@ -278,5 +292,33 @@ public class MainActivity extends FragmentActivity {
 		getNameRoom_Dialog.show(fragmentManager2, "tagPersonalizatedDialog");
 	}
 
+	/*---------------------------VIEWPAGER FUNCTIONS----------------*/
+	public void AddPage(Fragment fragmentToAdd ){
+		viewPagerAdapter.addFragment(fragmentToAdd);
+		viewPagerAdapter.notifyDataSetChanged();
+	}
 
+	public void AddPagesPackage(ArrayList<Fragment> fragmentToAdd ){
+		int i;
+		for(i=0;i<fragmentToAdd.size();i++){
+			viewPagerAdapter.addFragment(fragmentToAdd.get(i));
+			viewPagerAdapter.notifyDataSetChanged();
+		}
+	}
+	public void RemovePage(int index){
+		viewPagerAdapter.removeFragment(index);
+		viewPagerAdapter.notifyDataSetChanged();
+	}
+
+	public void RemoveAllPages(){
+		viewPagerAdapter.removeAllFragments();
+		viewPagerAdapter.notifyDataSetChanged();
+	}
+	public void ViewPagerSHOW(){
+		this.pager.setVisibility(View.VISIBLE);
+	}
+	public void ViewPagerHIDE(){
+		this.pager.setVisibility(View.GONE);
+	}
 }
+
