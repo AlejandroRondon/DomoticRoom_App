@@ -15,6 +15,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.LayoutAnimationController;
+import android.view.animation.TranslateAnimation;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import dialogsPack.Alert_Dialog;
 import dialogsPack.Confirmation_Dialog;
@@ -25,7 +30,7 @@ import dialogsPack.Selection_Dialog;
 
 public class MainActivity extends FragmentActivity {
 
-
+	private LinearLayout layoutAnimado;
 	final int Intent_KEYWORD = 12345;		//Key used to transmit information to the settings activity
 	int fragmentToSet;						//Variable used to transmit the fragment to inflate to the settings activity
 	TabManager tabManager;					//the principal manager of tabs in the action bar
@@ -51,24 +56,24 @@ public class MainActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		layoutAnimado = (LinearLayout) findViewById(R.id.animado);
 		Log.i("MainActivity", "DOMOTIC ROOM(OnCreate)");
 
 		/*new instance of tab manager to control the action bar */
 		Log.i("MainActivity", "Tabs manager Created");
-		tabManager = new TabManager(getActionBar(),NumberOfTabs,getFragmentManager());
-
-
+		tabManager = new TabManager(this,getActionBar(),NumberOfTabs,getFragmentManager());
 
 		// Instantiate a ViewPager
 		pager = (ViewPager) findViewById(R.id.pager);
 		// Create an adapter with the fragments we show on the ViewPager
-		viewPagerAdapter = new ViewPagerAdapter(
-				fragmentManagerCompat);
-		this.pager.setAdapter(viewPagerAdapter);
+		viewPagerAdapter = new ViewPagerAdapter(fragmentManagerCompat);
+		pager.setAdapter(viewPagerAdapter);
+
+		/**----------------------PROBES---------------------------------------------*/
+		
+		/**Probing ViewPager*/
+		/*
 		ArrayList<android.support.v4.app.Fragment> pages = new ArrayList<android.support.v4.app.Fragment>();
-
-
 		pages.add(ScreenSlidePageFragment.newInstance(getResources()
 				.getColor(R.color.darkgreen), 0));
 		pages.add(ScreenSlidePageFragment.newInstance(getResources()
@@ -79,11 +84,10 @@ public class MainActivity extends FragmentActivity {
 				.getColor(R.color.red), 3));
 		pages.add(ScreenSlidePageFragment.newInstance(getResources()
 				.getColor(R.color.orange), 4));
-
 		AddPagesPackage(pages);
-
-
-		/*Probing Dialog boxes*/
+		*/
+		
+		/**Probing Dialog boxes*/
 		//ProbingDialogs();
 
 	}	
@@ -91,10 +95,10 @@ public class MainActivity extends FragmentActivity {
 	public void onBackPressed() {
 
 		// Return to previous page when we press back button
-		if (this.pager.getCurrentItem() == 0)
+		if (pager.getCurrentItem() == 0)
 			super.onBackPressed();
 		else
-			this.pager.setCurrentItem(this.pager.getCurrentItem() - 1);
+			pager.setCurrentItem(pager.getCurrentItem() - 1);
 
 	}
 
@@ -123,6 +127,8 @@ public class MainActivity extends FragmentActivity {
 			auxiliar=roomcomponents.getSelectedItems(view);	//get arraylist of items selected
 			Log.v("MainActivity", "Adding items to the room selected");
 			rooms.get(i).AddArrayItems(auxiliar);
+			fragmentComponents.get(i).addAll(rooms.get(i).getListComponentFragments());
+			replaceAllPages(fragmentComponents.get(i));
 
 			Log.v("MainActivity", "Deleting items from components");
 			view= getCurrentFocus();
@@ -196,7 +202,10 @@ public class MainActivity extends FragmentActivity {
 		if (id == R.id.mnNew) {
 			Log.v("MENU", "New pressed");
 			rooms.add(new FragmentRoom());
-			tabManager.newTab("Room",R.drawable.ic_newroom,rooms.get(rooms.size()-1),true);
+			if(tabManager.newTab("Room",R.drawable.ic_newroom,rooms.get(rooms.size()-1),true)){
+				ArrayList<android.support.v4.app.Fragment> emptyList = new ArrayList<android.support.v4.app.Fragment>();
+				fragmentComponents.add(emptyList);
+			}
 
 			return true;
 		}
@@ -244,11 +253,12 @@ public class MainActivity extends FragmentActivity {
 		}
 		if (id == R.id.mnEdit) {
 			Log.v("MENU", "Edit pressed");
-			if(this.pager.getVisibility()==View.GONE){
-				this.pager.setVisibility(View.VISIBLE);
-			}else{
-				this.pager.setVisibility(View.GONE);
-			}
+			//			if(this.pager.getVisibility()==View.GONE){
+			//				this.pager.setVisibility(View.VISIBLE);
+			//			}else{
+			//				this.pager.setVisibility(View.GONE);
+			//			}
+			RemoveAllPages();
 			return true;
 		}
 
@@ -302,21 +312,52 @@ public class MainActivity extends FragmentActivity {
 	public void RemovePage(int index){
 		viewPagerAdapter.removeFragment(index);
 		viewPagerAdapter.notifyDataSetChanged();
+		pager.setAdapter(viewPagerAdapter);	//update the adapter
 	}
 
 	public void RemoveAllPages(){
 		viewPagerAdapter.removeAllFragments();
 		viewPagerAdapter.notifyDataSetChanged();
+		pager.setAdapter(viewPagerAdapter);	//update the adapter
 	}
 	public void replaceAllPages(ArrayList<Fragment> fragmentsToAdd){
 		RemoveAllPages();
 		AddPagesPackage(fragmentsToAdd);
 	}
 	public void ViewPagerSHOW(){
-		this.pager.setVisibility(View.VISIBLE);
+		//animar(true);
+		//this.pager.setVisibility(View.VISIBLE);
+		layoutAnimado.setVisibility(View.VISIBLE);
 	}
 	public void ViewPagerHIDE(){
-		this.pager.setVisibility(View.GONE);
+		//animar(false);
+		//this.pager.setVisibility(View.GONE);
+		layoutAnimado.setVisibility(View.GONE);
+	}
+	/*Used later*/
+	private void animar(boolean mostrar)
+	{
+		AnimationSet set = new AnimationSet(true);
+		Animation animation = null;
+		if (mostrar)
+		{
+			//desde la esquina inferior derecha a la superior izquierda
+			//			animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f);
+			animation = new TranslateAnimation(1.0f, 0.0f,  1.0f,  1f);
+		}
+		else
+		{    //desde la esquina superior izquierda a la esquina inferior derecha
+			//			animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f);
+			animation = new TranslateAnimation( 0.0f, 1.0f, 0.0f, 1.0f);
+		}
+		//duración en milisegundos
+		animation.setDuration(5000);
+		set.addAnimation(animation);
+		LayoutAnimationController controller = new LayoutAnimationController(set, 0.50f);
+
+
+		layoutAnimado.setLayoutAnimation(controller);
+		layoutAnimado.startAnimation(animation);
 	}
 }
 

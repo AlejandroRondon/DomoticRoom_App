@@ -16,7 +16,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
  
     // List of fragments which are going to set in the view pager widget
     List<Fragment> fragments;
- 
     /**
      * Constructor
      * 
@@ -32,6 +31,11 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         super(fm);
         this.fragments = listFragments;
     }
+    
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
     /**
      * Add a new fragment in the list.
      * 
@@ -44,6 +48,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     
     public void removeFragment(int index) {
         this.fragments.remove(index);
+        
     }
     public void removeAllFragments() {
         this.fragments.removeAll(fragments);

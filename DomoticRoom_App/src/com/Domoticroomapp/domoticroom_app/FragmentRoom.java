@@ -24,8 +24,8 @@ public class FragmentRoom extends Fragment{
 		// TODO Auto-generated constructor stub
 		
 		/*Probe component*/
-		RoomComponent room = new RoomComponent("Empty", "Empty", "Empty", R.drawable.ic_empty);
-		components.add(room);
+//		RoomComponent room = new RoomComponent("Empty", "Empty", "Empty", R.drawable.ic_empty);
+//		components.add(room);
 	}
 	public FragmentRoom(ArrayList<RoomComponent> components) {
 		// TODO Auto-generated constructor stub
@@ -84,28 +84,20 @@ public class FragmentRoom extends Fragment{
 		prefix = FrameManager.getPrefix(componentToadd.getIDcomponent());
 		if(prefix.equals("LI")){
 			framentToadd = new LightFragment(componentToadd.getIDcomponent());
-//			components.add(new RoomComponent("Light", BESComponents.get(i), "Component to manage one light",R.drawable.ic_light));
 		}else if(prefix.equals("WI")){
 			framentToadd = new WindowFragment(componentToadd.getIDcomponent());
-//			components.add(new RoomComponent("Window",BESComponents.get(i), "Component to manage one window",R.drawable.ic_windows));
 		}else if(prefix.equals("DO")){
 			framentToadd = new DoorFragment(componentToadd.getIDcomponent());
-//			components.add(new RoomComponent("Door", BESComponents.get(i), "Component to manage a door security",R.drawable.ic_door));
 		}else if(prefix.equals("TE")){
 			framentToadd = new TemperatureFragment(componentToadd.getIDcomponent());
-//			components.add(new RoomComponent("Temperature", BESComponents.get(i), "Component to manage the temperature",R.drawable.ic_temperature));
 		}else if(prefix.equals("SW")){
 			framentToadd = new SwitchFragment(componentToadd.getIDcomponent());
-//			components.add(new RoomComponent("Switch",BESComponents.get(i), "Component to manage one switch",R.drawable.ic_switch));
 		}else if(prefix.equals("MO")){
 			framentToadd = new MotorFragment(componentToadd.getIDcomponent());
-//			components.add(new RoomComponent("Motor", BESComponents.get(i), "Component to manage one motor",R.drawable.ic_motor));
 		}else if(prefix.equals("SE")){
 			framentToadd = new ServoFragment(componentToadd.getIDcomponent());
-//			components.add(new RoomComponent("Servomotor", BESComponents.get(i), "Component to manage one servomotor",R.drawable.ic_servo));
 		}else if(prefix.equals("LC")){
 			framentToadd = new LcdFragment(componentToadd.getIDcomponent());
-//			components.add(new RoomComponent("LCD", BESComponents.get(i), "Component to manage the LCD display in the master",R.drawable.ic_lcd));
 		}else{
 			framentToadd = new LightFragment(componentToadd.getIDcomponent());
 		}
@@ -115,7 +107,9 @@ public class FragmentRoom extends Fragment{
 		
 	}
 
-    
+    public ArrayList<android.support.v4.app.Fragment> getListComponentFragments(){
+    	return fragmentComponents;
+    }
     
 
 	/*-------------------------------------------------------------------------------------------------------*/

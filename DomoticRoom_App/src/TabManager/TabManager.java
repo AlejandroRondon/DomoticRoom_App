@@ -1,6 +1,9 @@
 package TabManager;
 
 import java.util.ArrayList;
+
+import com.Domoticroomapp.domoticroom_app.MainActivity;
+
 import dialogsPack.InputText_Dialog;
 import android.app.ActionBar;
 import android.app.Fragment;
@@ -18,11 +21,12 @@ public class TabManager {
 	FragmentManager fragmentManager;//instance of the fragmentmanager
 	ArrayList<ActionBar.Tab>  tabsArray= new ArrayList<ActionBar.Tab>();//array to save the rooms tabs
 	ActionBar.Tab tabComponents;//single variable to save the room components
-
+	MainActivity callingActivity;	//used to call functions from MainActivity
 	/*CONSTRUCTOR*/
-	public TabManager(ActionBar actionBar,int AmountLimit,FragmentManager fragmentManager){	//the fragment manager is neccesary to the dialog text input
+	public TabManager(MainActivity callingActivity,ActionBar actionBar,int AmountLimit,FragmentManager fragmentManager){	//the fragment manager is neccesary to the dialog text input
 		tabsAmountLimit=AmountLimit;
 		this.fragmentManager = fragmentManager;
+		this.callingActivity = callingActivity;
 		tabsCount =0;
 		//get the reference to the action bar
 		abar = actionBar;
@@ -73,7 +77,7 @@ public class TabManager {
 				/**/
 				tabsArray.add(newTab);
 				//Asociamos los listener a las pestañas
-				tabsArray.get(tabsCount).setTabListener(new TabListenerManager(fragment));
+				tabsArray.get(tabsCount).setTabListener(new TabListenerManager(callingActivity,fragment));
 				//Añadimos las pestañas a la action bar
 				abar.addTab( tabsArray.get(tabsCount),0);
 				abar.selectTab(tabsArray.get(tabsArray.size()-1));
@@ -84,12 +88,12 @@ public class TabManager {
 				/**/
 				tabComponents = newTab;
 				//Asociamos los listener a las pestañas
-				tabComponents.setTabListener(new TabListenerManager(fragment));
+				tabComponents.setTabListener(new TabListenerManager(callingActivity,fragment));
 				//Añadimos las pestañas a la action bar
 				abar.addTab( tabComponents);
 				abar.selectTab(tabComponents);
 				Log.i("TabManager","...New Components tab created");
-
+				
 			}
 
 		}else{

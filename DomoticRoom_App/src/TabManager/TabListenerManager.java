@@ -1,5 +1,6 @@
 package TabManager;
 
+import com.Domoticroomapp.domoticroom_app.MainActivity;
 import com.Domoticroomapp.domoticroom_app.R;
 import android.app.ActionBar;
 import android.app.Fragment;
@@ -10,10 +11,11 @@ import android.app.ActionBar.Tab;
 public class TabListenerManager implements ActionBar.TabListener {
 	
 	private Fragment fragment;
-	
-	public TabListenerManager(Fragment fg)
+	MainActivity callingActivity;
+	public TabListenerManager(MainActivity callActivity,Fragment fg)
 	{
 		this.fragment = fg;
+		callingActivity =  callActivity;
 	}
 	
 	@Override
@@ -25,6 +27,11 @@ public class TabListenerManager implements ActionBar.TabListener {
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
 		//Log.v("ActionBar", "Tab: " + tab.getText() + " selected.");
 		ft.replace(R.id.ppal_container, fragment);
+		if(tab.getText().toString().equals("Components")){
+			callingActivity.ViewPagerHIDE();
+		}else{
+			callingActivity.ViewPagerSHOW();
+		}
 	}
 	
 	@Override
