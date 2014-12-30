@@ -47,9 +47,12 @@ public class MainActivity extends FragmentActivity {
 	/*The pager adapter, which provides the pages to the view pager widget.*/
 	ViewPagerAdapter viewPagerAdapter;
 
-	ArrayList<RoomComponent> auxiliar = new ArrayList<RoomComponent>();
+	ArrayList<ArrayList<android.support.v4.app.Fragment>> fragmentComponents = new ArrayList<ArrayList<android.support.v4.app.Fragment>>();
 
-	ArrayList<ArrayList<android.support.v4.app.Fragment>> fragmentComponents = new ArrayList<ArrayList<Fragment>>();
+
+	ArrayList<RoomComponent> auxiliarArrayRoomComponents = new ArrayList<RoomComponent>();
+	ArrayList<android.support.v4.app.Fragment> auxiliarArrayListFragments = new ArrayList<android.support.v4.app.Fragment>();
+
 
 
 	@Override
@@ -70,7 +73,7 @@ public class MainActivity extends FragmentActivity {
 		pager.setAdapter(viewPagerAdapter);
 
 		/**----------------------PROBES---------------------------------------------*/
-		
+
 		/**Probing ViewPager*/
 		/*
 		ArrayList<android.support.v4.app.Fragment> pages = new ArrayList<android.support.v4.app.Fragment>();
@@ -85,22 +88,13 @@ public class MainActivity extends FragmentActivity {
 		pages.add(ScreenSlidePageFragment.newInstance(getResources()
 				.getColor(R.color.orange), 4));
 		AddPagesPackage(pages);
-		*/
-		
+		 */
+
 		/**Probing Dialog boxes*/
 		//ProbingDialogs();
 
 	}	
-	@Override
-	public void onBackPressed() {
 
-		// Return to previous page when we press back button
-		if (pager.getCurrentItem() == 0)
-			super.onBackPressed();
-		else
-			pager.setCurrentItem(pager.getCurrentItem() - 1);
-
-	}
 
 	/*--------------------------------------Functions (SLOTS)-------------------------------------*/
 	public void movetoroom(View view) {
@@ -114,21 +108,35 @@ public class MainActivity extends FragmentActivity {
 	public void onUserSelectValue(String selectedValue) {
 		Log.v("MainActivity", "onUserSelectValue has been called");
 		View view = getCurrentFocus();	//get the current view
-		int i;
+		int indexTab;
 		// TODO add your implementation.
 		if(!selectedValue.equals("not selection")){
 			/*find the tab with the name of the selection*/
-			for(i=0;i<tabManager.getTabsCount();i++){
-				if(selectedValue.equals(tabManager.getTabName(i))){
-					break;
+
+			indexTab = tabManager.getIndexTabWithName(selectedValue);
+			/**Add new components to the list of the room*/
+			auxiliarArrayRoomComponents=roomcomponents.getSelectedItems(view);	//get arraylist of items selected
+			Log.v("MainActivity", "Adding items to the room selected");
+			rooms.get(indexTab).AddArrayItems(auxiliarArrayRoomComponents);
+			/**add the fragments of the new components to the room*/
+
+			/*get the array of fragments from the room*/
+			auxiliarArrayListFragments = rooms.get(indexTab).getListComponentFragments();
+
+			/*get the size of the two arrays to determine the amount of elements to add*/
+			int size_updated,size_toupdate,size_diference,j;
+
+
+			size_updated = auxiliarArrayListFragments.size();	//amount of fragments in the room
+			size_toupdate = fragmentComponents.get(indexTab).size();	//amount the fragments in the array of arrays (fragmentComponents)
+			size_diference = size_updated - size_toupdate;		//amount of fragments to add to fragmentComponents
+
+			if(size_diference != 0){
+				for(j=size_toupdate;j<size_updated;j++){
+					fragmentComponents.get(indexTab).add(auxiliarArrayListFragments.get(j));
 				}
 			}
-
-			auxiliar=roomcomponents.getSelectedItems(view);	//get arraylist of items selected
-			Log.v("MainActivity", "Adding items to the room selected");
-			rooms.get(i).AddArrayItems(auxiliar);
-			fragmentComponents.get(i).addAll(rooms.get(i).getListComponentFragments());
-			replaceAllPages(fragmentComponents.get(i));
+			//replaceAllPages(fragmentComponents.get(i));
 
 			Log.v("MainActivity", "Deleting items from components");
 			view= getCurrentFocus();
@@ -218,6 +226,7 @@ public class MainActivity extends FragmentActivity {
 					roomcomponents_created=false;
 				}else{
 					rooms.remove(indexTabDeleted);//delete fragment associated to the tab
+					fragmentComponents.remove(indexTabDeleted);
 				}
 			}else{
 				Toast.makeText(this,"There aren't rooms to delete",Toast.LENGTH_SHORT).show();
@@ -227,7 +236,7 @@ public class MainActivity extends FragmentActivity {
 		if (id == R.id.mnUpdate) {
 			Log.v("MENU", "Update pressed");
 			/*frame to emulate a frame of update*/
-			String BluetoothFrame_Probe ="$BESLI01WI01TE01DO01SW01MO01SE01LC01LI02WI01TE03DO04";
+			String BluetoothFrame_Probe ="$BESLI01WI01TE01DO01SW01MO01SE01LC01LI02WI01TE03DO04WI02WI03";
 
 			/*new instance of a framemanager to manage the frame received*/
 			FrameManager frameManager = new FrameManager();
@@ -258,7 +267,6 @@ public class MainActivity extends FragmentActivity {
 			//			}else{
 			//				this.pager.setVisibility(View.GONE);
 			//			}
-			RemoveAllPages();
 			return true;
 		}
 
@@ -333,6 +341,38 @@ public class MainActivity extends FragmentActivity {
 		//animar(false);
 		//this.pager.setVisibility(View.GONE);
 		layoutAnimado.setVisibility(View.GONE);
+	}
+	public void loadFragmentsOnVP(String tabName){	//load the fragments in the ViewPager when any tab is selected
+		int indexTab=0;
+		if(tabName.equals("Components")){
+			ViewPagerHIDE();
+		}else{
+			indexTab = tabManager.getIndexTabWithName(tabName);
+			if(indexTab != -1){
+				if(fragmentComponents.get(indexTab).size() != 0){
+					replaceAllPages(fragmentComponents.get(indexTab));
+					ViewPagerSHOW();
+				}else{
+					ViewPagerHIDE();
+				}
+			}
+
+		}
+	}
+	
+	@Override
+	public void onBackPressed() {
+
+		// Return to previous page when we press back button
+		if (pager.getCurrentItem() == 0)
+			super.onBackPressed();
+		else
+			pager.setCurrentItem(pager.getCurrentItem() - 1);
+
+	}
+	
+	public void setFragmentView(int index){
+		pager.setCurrentItem(index);
 	}
 	/*Used later*/
 	private void animar(boolean mostrar)

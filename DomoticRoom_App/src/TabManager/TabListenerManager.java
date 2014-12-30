@@ -7,6 +7,7 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.ActionBar.Tab;
 //import android.util.Log;
+import android.util.Log;
 
 public class TabListenerManager implements ActionBar.TabListener {
 	
@@ -25,13 +26,9 @@ public class TabListenerManager implements ActionBar.TabListener {
 	
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
-		//Log.v("ActionBar", "Tab: " + tab.getText() + " selected.");
+		Log.v("ActionBar", "Tab: " + tab.getText() + " selected.");
 		ft.replace(R.id.ppal_container, fragment);
-		if(tab.getText().toString().equals("Components")){
-			callingActivity.ViewPagerHIDE();
-		}else{
-			callingActivity.ViewPagerSHOW();
-		}
+		callingActivity.loadFragmentsOnVP(tab.getText().toString());
 	}
 	
 	@Override

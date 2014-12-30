@@ -152,9 +152,21 @@ public class TabManager {
 	public ActionBar.Tab getCurrentTab(){
 		return abar.getSelectedTab();
 	}
-
-
-
+	public int getIndexTabWithName(String tabName){
+		int i;
+		boolean wasFound = false;
+		for(i=0;i<tabsCount;i++){
+			if(tabName.equals(tabsArray.get(i).getText().toString())){
+				wasFound=true;
+				break;
+			}
+		}
+		if(wasFound == true){
+			return i;
+		}else{
+			return -1;
+		}
+	}
 
 
 

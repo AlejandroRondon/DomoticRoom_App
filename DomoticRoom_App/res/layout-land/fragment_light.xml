@@ -5,7 +5,7 @@
     android:layout_gravity="center"
     android:layout_margin="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    android:background="@color/customBlue" >
+    android:id="@+id/ppalLayout">
 
     <TextView
         android:id="@+id/tTitle"

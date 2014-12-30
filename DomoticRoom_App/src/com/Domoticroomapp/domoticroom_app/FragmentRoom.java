@@ -8,10 +8,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 import utilitiesApps.FrameManager;
 import fragmentComponents.*;
 public class FragmentRoom extends Fragment{
@@ -19,6 +21,7 @@ public class FragmentRoom extends Fragment{
 	private ArrayList<RoomComponent> components = new ArrayList<RoomComponent>();
 	private ArrayList<android.support.v4.app.Fragment> fragmentComponents = new ArrayList<android.support.v4.app.Fragment>();
 	private ComponentsAdapter componentsAdapter;
+	private MainActivity callingActivity;	//used to call functions from MainActivity
 //	private String roomName;
 	public FragmentRoom() {
 		// TODO Auto-generated constructor stub
@@ -48,6 +51,18 @@ public class FragmentRoom extends Fragment{
 		lstListado = (ListView)getView().findViewById(R.id.LstListadoroom);
 		componentsAdapter = new ComponentsAdapter(this);
 		lstListado.setAdapter(componentsAdapter);
+		
+		lstListado.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> pariente, View view, int posicion, long id) {
+				RoomComponent elegido = (RoomComponent) pariente.getItemAtPosition(posicion); 
+
+                CharSequence texto = "Seleccionado: " + elegido.getIDcomponent();
+                Log.i("FRAGMENTROOM", Integer.toString(posicion));
+                callingActivity.setFragmentView(posicion);
+			}
+		});
 
 	}
 	public boolean AddArrayItems(ArrayList<RoomComponent> componentsToadd){
@@ -111,6 +126,12 @@ public class FragmentRoom extends Fragment{
     	return fragmentComponents;
     }
     
+	@Override
+	public void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		callingActivity = (MainActivity) getActivity();
+	}
 
 	/*-------------------------------------------------------------------------------------------------------*/
 	class ComponentsAdapter extends ArrayAdapter<RoomComponent> {
