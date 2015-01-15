@@ -1,7 +1,5 @@
 package fragmentComponents;
 
-import org.w3c.dom.Text;
-
 import com.Domoticroomapp.domoticroom_app.R;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

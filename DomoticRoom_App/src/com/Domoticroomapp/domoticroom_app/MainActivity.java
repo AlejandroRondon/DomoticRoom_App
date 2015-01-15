@@ -8,6 +8,7 @@ import ViewPagerManager.ViewPagerAdapter;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -30,6 +31,9 @@ import dialogsPack.Selection_Dialog;
 
 public class MainActivity extends FragmentActivity {
 
+	static final String STATE_SCORE = "playerScore";
+	static final String STATE_LEVEL = "playerLevel";
+	
 	private LinearLayout layoutAnimado;
 	final int Intent_KEYWORD = 12345;		//Key used to transmit information to the settings activity
 	int fragmentToSet;						//Variable used to transmit the fragment to inflate to the settings activity
@@ -398,6 +402,26 @@ public class MainActivity extends FragmentActivity {
 
 		layoutAnimado.setLayoutAnimation(controller);
 		layoutAnimado.startAnimation(animation);
+	}
+	
+	@Override
+	public void onSaveInstanceState(Bundle savedInstanceState) {
+	    // Save the user's current game state
+	    //savedInstanceState.putParcelable(STATE_SCORE, (Parcelable) tabManager);
+	    //savedInstanceState.putInt(STATE_LEVEL, mCurrentLevel);
+	    
+	    // Always call the superclass so it can save the view hierarchy state
+	    super.onSaveInstanceState(savedInstanceState);
+	}
+	
+	public void onRestoreInstanceState(Bundle savedInstanceState) {
+	    // Always call the superclass so it can restore the view hierarchy
+	    super.onRestoreInstanceState(savedInstanceState);
+	   
+	    // Restore state members from saved instance
+	   //
+	    tabManager = savedInstanceState.getParcelable(STATE_SCORE);
+	   // mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);
 	}
 }
 
