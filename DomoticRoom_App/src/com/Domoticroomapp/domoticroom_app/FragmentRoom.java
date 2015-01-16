@@ -56,10 +56,9 @@ public class FragmentRoom extends Fragment{
 
 			@Override
 			public void onItemClick(AdapterView<?> pariente, View view, int posicion, long id) {
-				RoomComponent elegido = (RoomComponent) pariente.getItemAtPosition(posicion); 
-
-                CharSequence texto = "Seleccionado: " + elegido.getIDcomponent();
-                Log.i("FRAGMENTROOM", Integer.toString(posicion));
+//				RoomComponent elegido = (RoomComponent) pariente.getItemAtPosition(posicion); 
+//                CharSequence texto = "Seleccionado: " + elegido.getIDcomponent();
+                Log.i("FRAGMENTROOM", "item "+Integer.toString(posicion)+ " touched");
                 callingActivity.setFragmentView(posicion);
 			}
 		});
@@ -145,6 +144,7 @@ public class FragmentRoom extends Fragment{
 
 		public View getView(int position, View convertView, ViewGroup parent) {
 			LayoutInflater inflater = context.getLayoutInflater();
+			
 			View item = inflater.inflate(R.layout.listitem_room, null);
 
 			TextView TitleComponent = (TextView)item.findViewById(R.id.tTitleComponent);

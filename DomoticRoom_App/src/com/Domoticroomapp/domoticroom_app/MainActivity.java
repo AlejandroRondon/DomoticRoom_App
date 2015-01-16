@@ -6,7 +6,9 @@ import utilitiesApps.FrameManager;
 import TabManager.TabManager;
 import ViewPagerManager.ViewPagerAdapter;
 import android.app.FragmentManager;
+import android.app.ListFragment;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -46,7 +48,7 @@ public class MainActivity extends FragmentActivity {
 	ViewPager pager = null;
 	/*The pager adapter, which provides the pages to the view pager widget.*/
 	ViewPagerAdapter viewPagerAdapter;
-
+	/*array of arrays, to save the different packs of fragments(to the ViewPager) of each room*/
 	ArrayList<ArrayList<android.support.v4.app.Fragment>> fragmentComponents = new ArrayList<ArrayList<android.support.v4.app.Fragment>>();
 
 
@@ -54,10 +56,27 @@ public class MainActivity extends FragmentActivity {
 	ArrayList<android.support.v4.app.Fragment> auxiliarArrayListFragments = new ArrayList<android.support.v4.app.Fragment>();
 
 
+	@Override
+	protected void onSaveInstanceState(Bundle outState){
+	    super.onSaveInstanceState(outState);
+	    //outState.putParcelable("hola",tabManager );
+	}
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+	    super.onConfigurationChanged(newConfig);
+	 
+	    // Checks the orientation of the screen
+	    if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+	        Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
+	    } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+	        Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
+	    }
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.activity_main);
 		layoutAnimado = (LinearLayout) findViewById(R.id.animado);
 		Log.i("MainActivity", "DOMOTIC ROOM(OnCreate)");
@@ -375,6 +394,7 @@ public class MainActivity extends FragmentActivity {
 		pager.setCurrentItem(index);
 	}
 	/*Used later*/
+	@SuppressWarnings("unused")
 	private void animar(boolean mostrar)
 	{
 		AnimationSet set = new AnimationSet(true);
@@ -399,5 +419,30 @@ public class MainActivity extends FragmentActivity {
 		layoutAnimado.setLayoutAnimation(controller);
 		layoutAnimado.startAnimation(animation);
 	}
+	
+	
+	
+	/**---------------------ACTIVITY STATES-----------------------------------------*/
+	 
+    protected void onStart(){
+    	super.onStart();
+    	Toast.makeText(this, "onStart", Toast.LENGTH_SHORT).show();
+    }
+    protected void onResume(){
+    	super.onResume();
+    	Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
+    }
+    protected void onPause(){
+    	super.onPause();
+    	Toast.makeText(this, "onPause", Toast.LENGTH_SHORT).show();
+    }
+    protected void onStop(){
+    	super.onStop();
+    	Toast.makeText(this, "onStop", Toast.LENGTH_SHORT).show();
+    }
+    protected void onDestroy(){
+    	super.onDestroy();
+    	Toast.makeText(this, "onDestroy", Toast.LENGTH_SHORT).show();
+    }
 }
 

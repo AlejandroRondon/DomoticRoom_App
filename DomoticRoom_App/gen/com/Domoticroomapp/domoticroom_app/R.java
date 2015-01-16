@@ -67,13 +67,13 @@ public final class R {
     public static final class id {
         public static final int LstListado=0x7f0a0011;
         public static final int LstListadoroom=0x7f0a000f;
-        public static final int animado=0x7f0a0001;
+        public static final int animado=0x7f0a0002;
         public static final int bMovetoroom=0x7f0a0010;
-        public static final int content=0x7f0a0003;
-        public static final int eEditText=0x7f0a0006;
+        public static final int content=0x7f0a0004;
+        public static final int eEditText=0x7f0a0007;
         public static final int editText1=0x7f0a000b;
         public static final int editText2=0x7f0a000d;
-        public static final int imageButton1=0x7f0a0009;
+        public static final int imageButton1=0x7f0a000a;
         public static final int imageButton2=0x7f0a0019;
         public static final int ivImageComponent=0x7f0a001c;
         public static final int listView1=0x7f0a0017;
@@ -85,26 +85,26 @@ public final class R {
         public static final int mnNew=0x7f0a0026;
         public static final int mnSettings=0x7f0a0020;
         public static final int mnUpdate=0x7f0a0023;
-        public static final int pager=0x7f0a0002;
+        public static final int pager=0x7f0a0003;
         public static final int paired=0x7f0a0015;
-        public static final int ppalLayout=0x7f0a0007;
+        public static final int ppalLayout=0x7f0a0008;
         public static final int ppal_container=0x7f0a0000;
         public static final int search=0x7f0a0016;
         public static final int seekBar1=0x7f0a000e;
         public static final int seekBar2=0x7f0a001a;
         public static final int tDesComponent=0x7f0a001f;
         public static final int tIDComponent=0x7f0a001e;
-        public static final int tTitle=0x7f0a0008;
+        public static final int tTitle=0x7f0a0009;
         public static final int tTitleComponent=0x7f0a001d;
         public static final int text=0x7f0a0012;
-        public static final int textView1=0x7f0a000a;
+        public static final int textView1=0x7f0a0001;
         public static final int textView2=0x7f0a000c;
         public static final int textView3=0x7f0a0018;
         public static final int textView4=0x7f0a001b;
-        public static final int tlabel=0x7f0a0005;
+        public static final int tlabel=0x7f0a0006;
         public static final int turnOff=0x7f0a0014;
         public static final int turnOn=0x7f0a0013;
-        public static final int tvIndex=0x7f0a0004;
+        public static final int tvIndex=0x7f0a0005;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
