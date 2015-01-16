@@ -6,25 +6,22 @@
     android:orientation="vertical"
     tools:context=".MainActivity" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="portrait"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <LinearLayout
+<!--     <LinearLayout
         android:id="@+id/animado"
         android:layout_width="fill_parent"
-        android:layout_height="200dp"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
         android:background="@android:color/darker_gray"
         android:gravity="center"
-        android:visibility="gone" >
- 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="200dp" />
-    </LinearLayout>
+        android:visibility="gone" > -->
+
+        <fragment
+            android:id="@+id/fragment1"
+            android:name="com.Domoticroomapp.domoticroom_app.FragmentViewPager"
+            android:layout_width="fill_parent"
+            android:layout_height="220dp"
+            />
+        <!--  android:layout_weight="0.5" -->
+   <!--  </LinearLayout> -->
 
 </LinearLayout>

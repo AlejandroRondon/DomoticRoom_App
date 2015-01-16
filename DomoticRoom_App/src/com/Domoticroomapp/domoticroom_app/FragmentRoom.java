@@ -115,6 +115,7 @@ public class FragmentRoom extends Fragment{
 		}else{
 			framentToadd = new LightFragment(componentToadd.getIDcomponent());
 		}
+		framentToadd.setRetainInstance(true);
 		fragmentComponents.add(framentToadd);
 		Log.d("FRAGMENTROOM", "Component fragment created");
 		componentsAdapter.notifyDataSetChanged();

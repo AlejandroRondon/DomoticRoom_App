@@ -6,7 +6,6 @@ import utilitiesApps.FrameManager;
 import TabManager.TabManager;
 import ViewPagerManager.ViewPagerAdapter;
 import android.app.FragmentManager;
-import android.app.ListFragment;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -33,6 +32,7 @@ import dialogsPack.Selection_Dialog;
 public class MainActivity extends FragmentActivity {
 
 	private LinearLayout layoutAnimado;
+	private View 	 fragmentAnimado;
 	final int Intent_KEYWORD = 12345;		//Key used to transmit information to the settings activity
 	int fragmentToSet;						//Variable used to transmit the fragment to inflate to the settings activity
 	TabManager tabManager;					//the principal manager of tabs in the action bar
@@ -79,7 +79,8 @@ public class MainActivity extends FragmentActivity {
 		
 		setContentView(R.layout.activity_main);
 		layoutAnimado = (LinearLayout) findViewById(R.id.animado);
-		Log.i("MainActivity", "DOMOTIC ROOM(OnCreate)");
+		fragmentAnimado = (View) findViewById(R.id.fragment1);
+ 		Log.i("MainActivity", "DOMOTIC ROOM(OnCreate)");
 
 		/*new instance of tab manager to control the action bar */
 		Log.i("MainActivity", "Tabs manager Created");
@@ -354,12 +355,12 @@ public class MainActivity extends FragmentActivity {
 	public void ViewPagerSHOW(){
 		//animar(true);
 		//this.pager.setVisibility(View.VISIBLE);
-		layoutAnimado.setVisibility(View.VISIBLE);
+		fragmentAnimado.setVisibility(View.VISIBLE);
 	}
 	public void ViewPagerHIDE(){
 		//animar(false);
 		//this.pager.setVisibility(View.GONE);
-		layoutAnimado.setVisibility(View.GONE);
+		fragmentAnimado.setVisibility(View.GONE);
 	}
 	public void loadFragmentsOnVP(String tabName){	//load the fragments in the ViewPager when any tab is selected
 		int indexTab=0;
@@ -395,30 +396,30 @@ public class MainActivity extends FragmentActivity {
 	}
 	/*Used later*/
 	@SuppressWarnings("unused")
-	private void animar(boolean mostrar)
-	{
-		AnimationSet set = new AnimationSet(true);
-		Animation animation = null;
-		if (mostrar)
-		{
-			//desde la esquina inferior derecha a la superior izquierda
-			//			animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f);
-			animation = new TranslateAnimation(1.0f, 0.0f,  1.0f,  1f);
-		}
-		else
-		{    //desde la esquina superior izquierda a la esquina inferior derecha
-			//			animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f);
-			animation = new TranslateAnimation( 0.0f, 1.0f, 0.0f, 1.0f);
-		}
-		//duración en milisegundos
-		animation.setDuration(5000);
-		set.addAnimation(animation);
-		LayoutAnimationController controller = new LayoutAnimationController(set, 0.50f);
-
-
-		layoutAnimado.setLayoutAnimation(controller);
-		layoutAnimado.startAnimation(animation);
-	}
+//	private void animar(boolean mostrar)
+//	{
+//		AnimationSet set = new AnimationSet(true);
+//		Animation animation = null;
+//		if (mostrar)
+//		{
+//			//desde la esquina inferior derecha a la superior izquierda
+//			//			animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f);
+//			animation = new TranslateAnimation(1.0f, 0.0f,  1.0f,  1f);
+//		}
+//		else
+//		{    //desde la esquina superior izquierda a la esquina inferior derecha
+//			//			animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f);
+//			animation = new TranslateAnimation( 0.0f, 1.0f, 0.0f, 1.0f);
+//		}
+//		//duración en milisegundos
+//		animation.setDuration(5000);
+//		set.addAnimation(animation);
+//		LayoutAnimationController controller = new LayoutAnimationController(set, 0.50f);
+//
+//
+//		layoutAnimado.setLayoutAnimation(controller);
+//		layoutAnimado.startAnimation(animation);
+//	}
 	
 	
 	

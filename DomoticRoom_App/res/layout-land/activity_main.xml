@@ -5,12 +5,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity" >
-        <TextView
+<!--         <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="portrait"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge" /> -->
     <LinearLayout
         android:id="@+id/animado"
         android:layout_width="fill_parent"
