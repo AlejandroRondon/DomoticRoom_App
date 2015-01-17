@@ -24,19 +24,23 @@
     <string name="tab_2">Tab 2</string>
     <string name="sEmpty">Empty</string>
     <string name="sIDescritpion_NewRoom">New Room</string>
-    
     <string name="sLight">Light</string>
     <string name="sLightImDescription">Toggle On/Off Light</string>
     <string name="sWindow">Window</string>
     <string name="sWindowHeight">Height</string>
-    <string name="sWindowOpening">Opening</string><string name="sWindowImDescriptionHeight">Toggle Low/High Window Height</string>
-    <string name="sWindowImDescriptionOpening">Toggle Open/Closed Window</string><string name="sTemperature">Temperature</string>
-    <string name="sTemperatureImDescription">Toogle On/Off Ventilation</string><string name="sTemperatureSetPoint">Set Point</string><string name="sDoor">Door</string>
+    <string name="sWindowOpening">Opening</string>
+    <string name="sWindowImDescriptionHeight">Toggle Low/High Window Height</string>
+    <string name="sWindowImDescriptionOpening">Toggle Open/Closed Window</string>
+    <string name="sTemperature">Temperature</string>
+    <string name="sTemperatureImDescription">Toogle On/Off Ventilation</string>
+    <string name="sTemperatureSetPoint">Set Point</string>
+    <string name="sDoor">Door</string>
     <string name="sDoorImDescription">Toggle Open/Closed Door</string>
     <string name="sUserName">User Name</string>
     <string name="sPassword">Password</string>
     <string name="sSwitch">Switch</string>
-    <string name="sSwitchImDescription">Toggle On/Off Switch</string><string name="sMotor">Motor</string>
+    <string name="sSwitchImDescription">Toggle On/Off Switch</string>
+    <string name="sMotor">Motor</string>
     <string name="sServo">Servo</string>
     <string name="sLcd">LCD</string>
     <string name="sComponent">Component</string>
@@ -44,12 +48,23 @@
     <string name="sComponentImage">Image of Component</string>
     <string name="SIDComponent">ID</string>
     <string name="sPassToRoom">Move to room</string>
-    
-    
-    
     <string name="sOn">ON</string>
     <string name="sOff">OFF</string>
-    
-    
+    <string name="sKey0">0</string>
+    <string name="sKey1">1</string>
+    <string name="sKey2">2</string>
+    <string name="sKey3">3</string>
+    <string name="sKey4">4</string>
+    <string name="sKey5">5</string>
+    <string name="sKey6">6</string>
+    <string name="sKey7">7</string>
+    <string name="sKey8">8</string>
+    <string name="sKey9">9</string>
+    <string name="sKeyA">A</string>
+    <string name="sKeyB">B</string>
+    <string name="sKeyC">C</string>
+    <string name="sKeyD">D</string>
+    <string name="sKeyAst">*</string>
+    <string name="sKeyNum">#</string>
 
 </resources>
