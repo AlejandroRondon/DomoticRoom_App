@@ -66,5 +66,7 @@
     <string name="sKeyD">D</string>
     <string name="sKeyAst">*</string>
     <string name="sKeyNum">#</string>
+    <string name="sfromBT">SMS from Bluetooth</string>
+    <string name="sSend">Send</string>
 
 </resources>

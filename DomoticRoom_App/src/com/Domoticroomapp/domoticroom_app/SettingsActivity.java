@@ -115,6 +115,7 @@
 //
 
 package com.Domoticroomapp.domoticroom_app;
+import Bluetooth.InterfaceCommunication;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -139,11 +140,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
   
-public class SettingsActivity extends Activity {
+public class SettingsActivity extends Activity  implements InterfaceCommunication{
   private static final String TAG = "bluetooth2";
-    
-  Button btnOn, btnOff;
-  TextView txtArduino;
+
+
   Handler h;
     
   final int RECIEVE_MESSAGE = 1;        // Status  for Handler
@@ -166,28 +166,29 @@ public class SettingsActivity extends Activity {
   
     setContentView(R.layout.activity_settings);
   
-    
-	/*************************BLUETOOTH******************************/
+
 
 	Bundle intentCapture = getIntent().getExtras(); // object to receive information from activity main
 	int fragmentToSet = intentCapture.getInt("paramFragmSet");
-	
+	View view = getCurrentFocus();	//get the current view
 	FragmentSettingsBluetooth fragmentSettingsBluetooth = new FragmentSettingsBluetooth();
 	FragmentSettingsCustomize fragmentSettingsCustomize = new FragmentSettingsCustomize();
-
+	
 	FragmentManager fragmentManager = getFragmentManager();
 	FragmentTransaction  fragmentTransaction = fragmentManager.beginTransaction();
 	//fragmentTransaction.setTransition(android.app.FragmentTransaction.TRANSIT_NONE);
 	if(fragmentToSet == R.layout.fragment_settings_bluetooth){
-		fragmentTransaction.add(android.R.id.content, fragmentSettingsBluetooth).commit();
+	//	fragmentTransaction.add(android.R.id.content, fragmentSettingsBluetooth).commit();
 	}else{
-		fragmentTransaction.add(android.R.id.content, fragmentSettingsCustomize).commit();
+	//	fragmentTransaction.add(android.R.id.content, fragmentSettingsCustomize).commit();
 	}
-    
-    btnOn = (Button) findViewById(R.id.btnOn);                  // button LED ON
-    btnOff = (Button) findViewById(R.id.btnOff);                // button LED OFF
-    txtArduino = (TextView) findViewById(R.id.txtArduino);      // for display the received data from the Arduino
-     
+		FragmentKeyboard fragmentKeyboard = new FragmentKeyboard();
+		fragmentTransaction.add(android.R.id.content, fragmentKeyboard).commit();
+
+
+	    
+		/*************************BLUETOOTH******************************/
+
     h = new Handler() {
         public void handleMessage(android.os.Message msg) {
             switch (msg.what) {
@@ -199,9 +200,12 @@ public class SettingsActivity extends Activity {
                 if (endOfLineIndex > 0) {                                            // if end-of-line,
                     String sbprint = sb.substring(0, endOfLineIndex);               // extract string
                     sb.delete(0, sb.length());                                      // and clear
-                    txtArduino.setText("Data from Arduino: " + sbprint);            // update TextView
-                    btnOff.setEnabled(true);
-                    btnOn.setEnabled(true); 
+                	View view = getCurrentFocus();	//get the current view
+                	TextView lblTexto = (TextView) findViewById(R.id.txtFromBT);
+                	lblTexto.setText( sbprint);            // update TextView
+
+
+                    //llega mensaje
                 }
                 //Log.d(TAG, "...String:"+ sb.toString() +  "Byte:" + msg.arg1 + "...");
                 break;
@@ -211,22 +215,7 @@ public class SettingsActivity extends Activity {
       
     btAdapter = BluetoothAdapter.getDefaultAdapter();       // get Bluetooth adapter
     checkBTState();
-  
-    btnOn.setOnClickListener(new OnClickListener() {
-      public void onClick(View v) {
-        btnOn.setEnabled(false);
-        mConnectedThread.write("1");    // Send "1" via Bluetooth
-        //Toast.makeText(getBaseContext(), "Turn on LED", Toast.LENGTH_SHORT).show();
-      }
-    });
-  
-    btnOff.setOnClickListener(new OnClickListener() {
-      public void onClick(View v) {
-        btnOff.setEnabled(false);  
-        mConnectedThread.write("0");    // Send "0" via Bluetooth
-        //Toast.makeText(getBaseContext(), "Turn off LED", Toast.LENGTH_SHORT).show();
-      }
-    });
+
   }
    
   private BluetoothSocket createBluetoothSocket(BluetoothDevice device) throws IOException {
@@ -256,7 +245,7 @@ public class SettingsActivity extends Activity {
     //     UUID for SPP.
      
     try {
-        btSocket = createBluetoothSocket(device);
+    	btSocket = createBluetoothSocket(device);
     } catch (IOException e) {
         errorExit("Fatal Error", "In onResume() and socket create failed: " + e.getMessage() + ".");
     }
@@ -365,4 +354,30 @@ public class SettingsActivity extends Activity {
               }
         }
     }
+
+@Override
+protected void onStart() {
+	// TODO Auto-generated method stub
+    //btnKey1 = (Button) findViewById(R.id.)
+	super.onStart();
+}
+
+@Override
+public void sendChar(char charTosend) {
+	// TODO Auto-generated method stub
+	mConnectedThread.write(Character.toString(charTosend));
+}
+
+@Override
+public void sendString(String stringsTosend) {
+	// TODO Auto-generated method stub
+	mConnectedThread.write(stringsTosend);
+	
+}
+
+@Override
+public void receivedString(String received) {
+	// TODO Auto-generated method stub
+	
+}
 }

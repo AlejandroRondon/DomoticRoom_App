@@ -32,7 +32,7 @@ public class MainActivity extends FragmentActivity {
 
 	static final String STATE_SCORE = "playerScore";
 	static final String STATE_LEVEL = "playerLevel";
-	
+
 	private LinearLayout layoutAnimado;
 	final int Intent_KEYWORD = 12345;		//Key used to transmit information to the settings activity
 	int fragmentToSet;						//Variable used to transmit the fragment to inflate to the settings activity
@@ -183,6 +183,36 @@ public class MainActivity extends FragmentActivity {
 		int id = item.getItemId();
 
 		/*-----------------------ITEMS IN THE SUBMENU--------------------------------------*/
+		if (id == android.R.id.home){
+			Log.v("MENU", "Home pressed");
+			/*frame to emulate a frame of update*/
+			String BluetoothFrame_Probe ="$BESLI01WI01TE01DO01SW01MO01SE01LC01LI02WI01TE03DO04WI02WI03";
+
+			/*new instance of a framemanager to manage the frame received*/
+			FrameManager frameManager = new FrameManager();
+
+			if(!frameManager.setFrame(BluetoothFrame_Probe)){
+				Log.w("MainActivity", "Error setFrame");
+			}else{
+				int i;
+				for(i=0;i< frameManager.getNumberComponents();i++){
+					Log.i("MainActivity", frameManager.getBESComponent(i));
+				}
+
+				if(roomcomponents_created == false){
+					roomcomponents = new FragmentRoomComponentsList(frameManager.constructRoomComponents());
+					tabManager.newTab("Components",R.drawable.ic_components,roomcomponents ,false);
+					roomcomponents_created= true;
+				}else{
+					roomcomponents.AddArrayItems(frameManager.constructRoomComponents());
+
+				}
+			}
+			return true;
+		}
+
+
+
 		if (id == R.id.mnSettings) {
 			Log.v("MENU", "Settings pressed");
 
@@ -236,12 +266,12 @@ public class MainActivity extends FragmentActivity {
 			}
 			return true;
 		}
-		if (id == R.id.mnUpdate) {
+		/*if (id == R.id.mnUpdate) {
 			Log.v("MENU", "Update pressed");
-			/*frame to emulate a frame of update*/
+			//frame to emulate a frame of update
 			String BluetoothFrame_Probe ="$BESLI01WI01TE01DO01SW01MO01SE01LC01LI02WI01TE03DO04WI02WI03";
 
-			/*new instance of a framemanager to manage the frame received*/
+			//new instance of a framemanager to manage the frame received
 			FrameManager frameManager = new FrameManager();
 
 			if(!frameManager.setFrame(BluetoothFrame_Probe)){
@@ -262,7 +292,7 @@ public class MainActivity extends FragmentActivity {
 				}
 			}
 			return true;
-		}
+		}*/
 		if (id == R.id.mnEdit) {
 			Log.v("MENU", "Edit pressed");
 			//			if(this.pager.getVisibility()==View.GONE){
@@ -362,7 +392,7 @@ public class MainActivity extends FragmentActivity {
 
 		}
 	}
-	
+
 	@Override
 	public void onBackPressed() {
 
@@ -373,7 +403,7 @@ public class MainActivity extends FragmentActivity {
 			pager.setCurrentItem(pager.getCurrentItem() - 1);
 
 	}
-	
+
 	public void setFragmentView(int index){
 		pager.setCurrentItem(index);
 	}
@@ -402,25 +432,25 @@ public class MainActivity extends FragmentActivity {
 		layoutAnimado.setLayoutAnimation(controller);
 		layoutAnimado.startAnimation(animation);
 	}
-	
+
 	@Override
 	public void onSaveInstanceState(Bundle savedInstanceState) {
-	    // Save the user's current game state
-	    //savedInstanceState.putParcelable(STATE_SCORE, (Parcelable) tabManager);
-	    //savedInstanceState.putInt(STATE_LEVEL, mCurrentLevel);
-	    
-	    // Always call the superclass so it can save the view hierarchy state
-	    super.onSaveInstanceState(savedInstanceState);
+		// Save the user's current game state
+		//savedInstanceState.putParcelable(STATE_SCORE, (Parcelable) tabManager);
+		//savedInstanceState.putInt(STATE_LEVEL, mCurrentLevel);
+
+		// Always call the superclass so it can save the view hierarchy state
+		super.onSaveInstanceState(savedInstanceState);
 	}
-	
+
 	public void onRestoreInstanceState(Bundle savedInstanceState) {
-	    // Always call the superclass so it can restore the view hierarchy
-	    super.onRestoreInstanceState(savedInstanceState);
-	   
-	    // Restore state members from saved instance
-	   //
-	    tabManager = savedInstanceState.getParcelable(STATE_SCORE);
-	   // mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);
+		// Always call the superclass so it can restore the view hierarchy
+		super.onRestoreInstanceState(savedInstanceState);
+
+		// Restore state members from saved instance
+		//
+		tabManager = savedInstanceState.getParcelable(STATE_SCORE);
+		// mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);
 	}
 }
 

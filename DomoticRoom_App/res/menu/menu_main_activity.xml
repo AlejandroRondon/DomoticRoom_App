@@ -13,11 +13,11 @@
                 android:title="@string/sCustomize"/>
         </menu>
     </item>
-     <item
+    <!--  <item
         android:id="@+id/mnUpdate"
         android:icon="@android:drawable/ic_popup_sync"
         android:showAsAction="ifRoom"
-        android:title="@string/sUpdate"/>
+        android:title="@string/sUpdate"/> -->
     <item
         android:id="@+id/mnEdit"
         android:icon="@android:drawable/ic_menu_edit"
