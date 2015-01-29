@@ -140,7 +140,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
   
-public class SettingsActivity extends Activity  implements InterfaceCommunication{
+public class SettingsActivity extends Activity  implements InterfaceKeyboard{
   private static final String TAG = "bluetooth2";
 
 
@@ -363,21 +363,33 @@ protected void onStart() {
 }
 
 @Override
-public void sendChar(char charTosend) {
+public void pressedKey(char charTosend) {
 	// TODO Auto-generated method stub
 	mConnectedThread.write(Character.toString(charTosend));
 }
 
 @Override
-public void sendString(String stringsTosend) {
+public void writtenString(String stringsTosend) {
 	// TODO Auto-generated method stub
 	mConnectedThread.write(stringsTosend);
-	
 }
 
-@Override
-public void receivedString(String received) {
-	// TODO Auto-generated method stub
-	
-}
+//@Override
+//public void sendChar(char charTosend) {
+//	// TODO Auto-generated method stub
+//	mConnectedThread.write(Character.toString(charTosend));
+//}
+//
+//@Override
+//public void sendString(String stringsTosend) {
+//	// TODO Auto-generated method stub
+//	mConnectedThread.write(stringsTosend);
+//	
+//}
+//
+//@Override
+//public void receivedString(String received) {
+//	// TODO Auto-generated method stub
+//	
+//}
 }
