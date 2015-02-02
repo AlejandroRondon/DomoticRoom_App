@@ -108,6 +108,9 @@ public class MainActivity extends FragmentActivity {
 		/*later of here --> onUserSelectValue*/
 
 	}
+	public void forceToConnect(View view) {
+	
+	}
 	public void onUserSelectValue(String selectedValue) {
 		Log.v("MainActivity", "onUserSelectValue has been called");
 		View view = getCurrentFocus();	//get the current view

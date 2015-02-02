@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Domotic Room</string>
+    
+     <string name="app_name">Domotic Room</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="sSettingsActivity">Settings</string>
 
     <!-- BLUETOOTH FRAGMENT STRINGS -->
-
     <string name="Text">Status: -</string>
     <string name="on">Turn On</string>
     <string name="off">Turn Off</string>
@@ -18,36 +18,57 @@
     <string name="sBluetoothSettings">Bluetooth Settings</string>
     <string name="sSettings">Settings</string>
     <string name="sBluetooth">Bluetooth</string>
+
+    <!-- ROOM COMPONENTS STRINGS -->
+    <string name="sDoor">Door</string>
+    <string name="sDoorImDescription">Toggle OPEN/CLOSED Door</string>
+    <string name="sDoorOpen">OPEN</string>
+    <string name="sDoorClose">CLOSE</string>
+    <string name="sDoorLock">LOCK</string>
+    <string name="sLcd">LCD</string>
+    <string name="sLcdSend">SEND</string>
+    <string name="sLight">Light</string>
+    <string name="sLightImDescription">Toggle ON/OFF Light</string>
+    <string name="sLightAuto">AUTO</string>
+    <string name="sLightOn">ON</string>
+    <string name="sLightOff">OFF</string>
+    <string name="sMotor">Motor</string>
+    <string name="sMotorImDescription">Toggle ON/OFF Motor</string>
+    <string name="sMotorForward">FORWARD</string>
+    <string name="sMotorBackward">BACK</string>
+    <string name="sServo">Servo</string>
+    <string name="sServoImDescription">Toggle ON/OFF Servo</string>
+    <string name="sSwitch">Switch</string>
+    <string name="sSwitchImDescription">Toggle ON/OFF Switch</string>
+    <string name="sTemperature">Temperature</string>
+    <string name="sTemperatureImDescription">Toogle ON/OFF Temp. Control</string>
+    <string name="sTemperatureAuto">AUTO</string>
+    <string name="sTemperatureOn">ON</string>
+    <string name="sTemperatureOff">OFF</string>
+    <string name="sTemperatureSetPoint">SetPoint</string>
+    <string name="sTemperatureCurrent">24°C</string>
+    <string name="sWindow">Window</string>
+    <string name="sWindowHeight">Height</string>
+    <string name="sWindowOpening">Opening</string>
+    <string name="sWindowImDescriptionHeight">Toggle LOW/HIGH Window Height</string>
+    <string name="sWindowImDescriptionOpening">Toggle OPEN/CLOSED Window</string>
+
+    <!-- ANOTHER STRINGS -->
+    <string name="sUserName">User Name</string>
+    <string name="sPassword">Password</string>
     <string name="sNew">New</string>
     <string name="sDelete">Delete</string>
+    <string name="sEdit">Edit</string>
     <string name="tab_1">Tab 1</string>
     <string name="tab_2">Tab 2</string>
     <string name="sEmpty">Empty</string>
     <string name="sIDescritpion_NewRoom">New Room</string>
-    <string name="sLight">Light</string>
-    <string name="sLightImDescription">Toggle On/Off Light</string>
-    <string name="sWindow">Window</string>
-    <string name="sWindowHeight">Height</string>
-    <string name="sWindowOpening">Opening</string>
-    <string name="sWindowImDescriptionHeight">Toggle Low/High Window Height</string>
-    <string name="sWindowImDescriptionOpening">Toggle Open/Closed Window</string>
-    <string name="sTemperature">Temperature</string>
-    <string name="sTemperatureImDescription">Toogle On/Off Ventilation</string>
-    <string name="sTemperatureSetPoint">Set Point</string>
-    <string name="sDoor">Door</string>
-    <string name="sDoorImDescription">Toggle Open/Closed Door</string>
-    <string name="sUserName">User Name</string>
-    <string name="sPassword">Password</string>
-    <string name="sSwitch">Switch</string>
-    <string name="sSwitchImDescription">Toggle On/Off Switch</string>
-    <string name="sMotor">Motor</string>
-    <string name="sServo">Servo</string>
-    <string name="sLcd">LCD</string>
     <string name="sComponent">Component</string>
     <string name="sComponentDescription">Component description</string>
     <string name="sComponentImage">Image of Component</string>
     <string name="SIDComponent">ID</string>
     <string name="sPassToRoom">Move to room</string>
+  
     <string name="sOn">ON</string>
     <string name="sOff">OFF</string>
     <string name="sKey0">0</string>
@@ -68,5 +89,6 @@
     <string name="sKeyNum">#</string>
     <string name="sfromBT">SMS from Bluetooth</string>
     <string name="sSend">Send</string>
+    <string name="sConnect">Connect</string>
 
 </resources>

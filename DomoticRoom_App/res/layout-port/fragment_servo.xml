@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ppalLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/ppalLayout" >
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/tTitle"
@@ -11,15 +11,29 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/sServo"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textSize="32sp"
+        android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tlabel"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/sUnderConstruction"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="32sp" />
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/imageButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:layout_weight="0.4"
+            android:src="@drawable/fragment_servo_head"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/sServoImDescription" />
+
+        <SeekBar
+            android:id="@+id/seekBar1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_weight="0.65" />
+    </LinearLayout>
 
 </LinearLayout>
