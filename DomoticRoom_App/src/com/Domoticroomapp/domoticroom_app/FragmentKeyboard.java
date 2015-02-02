@@ -1,5 +1,4 @@
 package com.Domoticroomapp.domoticroom_app;
-import Bluetooth.InterfaceCommunication;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.ContentValues;
@@ -165,7 +164,8 @@ public class FragmentKeyboard extends Fragment  implements View.OnClickListener 
             break;
             case R.id.btnSend:
             	keyCommunicator.writtenString(stringTosend.getText().toString());
-            break;
+            	stringTosend.setText("");
+           break;
         }
 		
 	}

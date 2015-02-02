@@ -3,6 +3,8 @@ package com.Domoticroomapp.domoticroom_app;
 
 import java.util.ArrayList;
 import utilitiesApps.FrameManager;
+import BluetoothPackage_SE.Bluetooth;
+import BluetoothPackage_SE.InterfaceCommunication;
 import TabManager.TabManager;
 import ViewPagerManager.ViewPagerAdapter;
 import android.app.FragmentManager;
@@ -28,12 +30,14 @@ import dialogsPack.SelectionMulti_Dialog;
 import dialogsPack.SelectionSingle_Dialog;
 import dialogsPack.Selection_Dialog;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity implements InterfaceCommunication {
 
-	static final String STATE_SCORE = "playerScore";
-	static final String STATE_LEVEL = "playerLevel";
-
+	Bluetooth bluetooth;
+	String nameTag ;
+	String MAC;
 	private LinearLayout layoutAnimado;
+	final int Intent_KEYWORD_BT = 54321;		//Key used to transmit information to the settings activity
+
 	final int Intent_KEYWORD = 12345;		//Key used to transmit information to the settings activity
 	int fragmentToSet;						//Variable used to transmit the fragment to inflate to the settings activity
 	TabManager tabManager;					//the principal manager of tabs in the action bar
@@ -62,6 +66,16 @@ public class MainActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+
+		/*************************BLUETOOTH******************************/
+		// MAC-address of Bluetooth module (you must edit this line)
+		//nameTag = "Bluetooth COM";
+		//MAC = "00:15:FF:F3:9E:40";
+
+		MAC = "00:00:00:00:00:00";
+		bluetooth = new Bluetooth(nameTag,MAC,this, getBaseContext());
+
 		layoutAnimado = (LinearLayout) findViewById(R.id.animado);
 		Log.i("MainActivity", "DOMOTIC ROOM(OnCreate)");
 
@@ -108,8 +122,10 @@ public class MainActivity extends FragmentActivity {
 		/*later of here --> onUserSelectValue*/
 
 	}
-	public void forceToConnect(View view) {
-	
+	public void connectBluetooth(View view) {
+		Log.v("MainActivity", "movetoroom has been called");
+		bluetooth.bluetoothOnResume();
+
 	}
 	public void onUserSelectValue(String selectedValue) {
 		Log.v("MainActivity", "onUserSelectValue has been called");
@@ -226,9 +242,9 @@ public class MainActivity extends FragmentActivity {
 			Log.v("MENU", "Bluetooth settings pressed");
 			fragmentToSet = R.layout.fragment_settings_bluetooth;
 			/*intent to transmit information to the settings activity*/
-			Intent i = new Intent(this,SettingsActivity.class);
-			i.putExtra("paramFragmSet",fragmentToSet);
-			startActivityForResult(i, Intent_KEYWORD);
+			Intent i = new Intent(this,BluetoothActivity.class);
+			//i.putExtra("paramFragmSet",fragmentToSet);
+			startActivityForResult(i, Intent_KEYWORD_BT);
 
 			return true;
 		}
@@ -237,7 +253,7 @@ public class MainActivity extends FragmentActivity {
 			fragmentToSet = R.layout.fragment_settings_customize;
 			/*intent to transmit information to the settings activity*/
 			Intent i = new Intent(this,SettingsActivity.class);
-			i.putExtra("paramFragmSet",fragmentToSet);
+			//i.putExtra("paramFragmSet",fragmentToSet);
 			startActivityForResult(i, Intent_KEYWORD);
 
 			return true;
@@ -309,7 +325,20 @@ public class MainActivity extends FragmentActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+		//super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode==Intent_KEYWORD_BT && resultCode==RESULT_OK ) {
+
+
+			MAC = data.getExtras().getString("MAC");
+			bluetooth.setMAC(MAC);
+			Toast.makeText(getApplicationContext(), "Save mac: " + MAC, Toast.LENGTH_SHORT).show();
+
+		}
+
+	}
 
 	void ProbingDialogs(){
 		/*Probing Dialog boxes*/
@@ -452,8 +481,30 @@ public class MainActivity extends FragmentActivity {
 
 		// Restore state members from saved instance
 		//
-		tabManager = savedInstanceState.getParcelable(STATE_SCORE);
+		//tabManager = savedInstanceState.getParcelable(STATE_SCORE);
 		// mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);
+	}
+	@Override
+	public void onResume() {
+		super.onResume();
+
+		bluetooth.bluetoothOnResume();
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		bluetooth.bluetoothOnPause();
+
+	}
+
+
+	@Override
+	public void receivedString(String received) {
+		// TODO Auto-generated method stub
+		/*Make Echo*/
+		Log.i("MainActivity",received);
+		bluetooth.SendString("Echo: "+received);
 	}
 }
 

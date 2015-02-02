@@ -10,7 +10,7 @@
         android:layout_height="48dp"
         android:background="@color/doorFragment"
         android:drawableRight="@drawable/ic_bluetooth"
-        android:onClick="forceToConnect"
+        android:onClick="connectBluetooth"
         android:text="@string/sConnect" />
 
         <Button

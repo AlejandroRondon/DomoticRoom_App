@@ -35,6 +35,9 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/sSettingsActivity" />
+        <activity
+            android:name=".BluetoothActivity"
+            android:label="@string/sBluetoothSettings" />
     </application>
 
 </manifest>
