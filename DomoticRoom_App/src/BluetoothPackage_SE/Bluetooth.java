@@ -10,6 +10,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.content.Intent;
+import android.net.wifi.WifiConfiguration.Status;
 import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
@@ -28,8 +29,6 @@ public class Bluetooth {
 	Handler h;
 	public String MAC;
 
-
-
 	public BluetoothAdapter btAdapter;
 	public BluetoothSocket btSocket;
 
@@ -44,13 +43,15 @@ public class Bluetooth {
 	//Used to receive parameters from the main Activity
 	public Activity activity;
 	public Context context;
-
+	private short connection_status;	// 0-no connection , 1-connected, 2-changing status
+	
 
 	@SuppressLint("HandlerLeak") public Bluetooth(String TAG,String MAC,Activity activity,Context context) {
 		// TODO Auto-generated constructor stub
 
 		this.activity = activity;
 		this.context = context;
+		connection_status = 0;
 
 		btAdapter = null;
 		btSocket = null;
@@ -105,7 +106,7 @@ public class Bluetooth {
 	public void bluetoothOnResume(){
 		onAttach();
 		Log.d(TAG, "...onResume - try connect...");
-
+		connection_status = 2;
 		// Set up a pointer to the remote node using it's address.
 		BluetoothDevice device = btAdapter.getRemoteDevice(MAC);
 
@@ -116,8 +117,10 @@ public class Bluetooth {
 
 		try {
 			btSocket = createBluetoothSocket(device);
+
 		} catch (IOException e) {
 			errorExit("Fatal Error", "In onResume() and socket create failed: " + e.getMessage() + ".");
+
 		}
 
 		// Discovery is resource intensive.  Make sure it isn't going on
@@ -129,8 +132,12 @@ public class Bluetooth {
 		try {
 			btSocket.connect();
 			Log.d(TAG, "....Connection ok...");
+			Toast.makeText(this.context, "Bluetooth: connection successful!", Toast.LENGTH_LONG).show();
+			connection_status = 1;
 		} catch (IOException e) {
 			Log.d(TAG, "....Connection fail...");
+			Toast.makeText(this.context, "Bluetooth: connection failed!", Toast.LENGTH_LONG).show();
+			connection_status = 0;
 			try {
 				btSocket.close();
 			} catch (IOException e2) {
@@ -149,9 +156,12 @@ public class Bluetooth {
 	public void bluetoothOnPause(){
 		onDetach();
 		Log.d(TAG, "...In onPause()...");
+		connection_status = 2;
 
 		try     {
 			btSocket.close();
+			Toast.makeText(this.context, "Bluetooth: disconnected!", Toast.LENGTH_LONG).show();
+			connection_status = 0;
 		} catch (IOException e2) {
 			errorExit("Fatal Error", "In onPause() and failed to close socket." + e2.getMessage() + ".");
 		}
