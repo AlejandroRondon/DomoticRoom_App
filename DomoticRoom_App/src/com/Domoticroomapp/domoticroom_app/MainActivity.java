@@ -8,10 +8,16 @@ import BluetoothPackage_SE.InterfaceCommunication;
 import TabManager.TabManager;
 import ViewPagerManager.ViewPagerAdapter;
 import android.app.FragmentManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
@@ -21,6 +27,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.LayoutAnimationController;
 import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import dialogsPack.Alert_Dialog;
@@ -33,6 +40,7 @@ import fragmentComponents.InterfaceFragments;
 
 public class MainActivity extends FragmentActivity implements InterfaceCommunication,InterfaceFragments {
 
+	private static final int NOTIF_ALERTA_ID = 0;
 	Bluetooth bluetooth;
 	String nameTag ;
 	String MAC;
@@ -61,14 +69,19 @@ public class MainActivity extends FragmentActivity implements InterfaceCommunica
 	ArrayList<RoomComponent> auxiliarArrayRoomComponents = new ArrayList<RoomComponent>();
 	ArrayList<android.support.v4.app.Fragment> auxiliarArrayListFragments = new ArrayList<android.support.v4.app.Fragment>();
 
-
-
+	NotificationManager mNotificationManager;
+	NotificationCompat.Builder notifyTemperature;
+	NotificationCompat.Builder notifyDoor;
+	
+	PendingIntent contIntent;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		buildNotifications();
 
+		
 		/*************************BLUETOOTH******************************/
 		// MAC-address of Bluetooth module (you must edit this line)
 		nameTag = "Bluetooth COM";
@@ -124,8 +137,21 @@ public class MainActivity extends FragmentActivity implements InterfaceCommunica
 
 	}
 	public void connectBluetooth(View view) {
-		Log.v("MainActivity", "movetoroom has been called");
-		bluetooth.bluetoothOnResume();
+		Button bConnect = (Button)view.findViewById(R.id.bConnect);
+		Log.v("MainActivity", "connect bluetooth has been called");
+		if(bluetoothStatus() == 0){
+			if(bluetooth.bluetoothConnect() == 1){
+				bConnect.setText("disconnect");
+				bConnect.setBackgroundColor(getResources().getColor(R.color.temperatureFragment));
+				
+			}
+
+		}else{
+			if(bluetooth.bluetoothDisconnect() == 0){
+				bConnect.setText("connect");
+				bConnect.setBackgroundColor(getResources().getColor(R.color.doorFragment));
+			}
+		}
 
 	}
 	public void onUserSelectValue(String selectedValue) {
@@ -333,7 +359,7 @@ public class MainActivity extends FragmentActivity implements InterfaceCommunica
 		if (requestCode==Intent_KEYWORD_BT && resultCode==RESULT_OK ) {
 			MAC = data.getExtras().getString("MAC");
 			if(!MAC.equals("00:00:00:00:00:00")){
-				
+
 				bluetooth.setMAC(MAC);
 				Toast.makeText(getApplicationContext(), "Save mac: " + MAC, Toast.LENGTH_SHORT).show();
 			}
@@ -489,14 +515,29 @@ public class MainActivity extends FragmentActivity implements InterfaceCommunica
 	@Override
 	public void onResume() {
 		super.onResume();
+		if(bluetooth.bluetoothConnect() == 1){
+			//btnConnect.setText("DISCONNECT");
+			Toast.makeText(this, "Bluetooth status: Connected", Toast.LENGTH_SHORT).show();
+		}else{
+			Toast.makeText(this, "Bluetooth status: Disconnected", Toast.LENGTH_SHORT).show();
+			//btnConnect.setText("CONNECT");
+		}
 
-		bluetooth.bluetoothOnResume();
 	}
 
 	@Override
 	public void onPause() {
 		super.onPause();
-		bluetooth.bluetoothOnPause();
+		if(bluetooth.bluetoothDisconnect() == 0){
+			//btnConnect.setText("CONNECT");
+			Toast.makeText(this, "Bluetooth status: Disconnected", Toast.LENGTH_SHORT).show();
+
+		}else{
+			//btnConnect.setText("DISCONNECT");
+			Toast.makeText(this, "Bluetooth status: Connected", Toast.LENGTH_SHORT).show();
+
+		}
+
 
 	}
 
@@ -507,6 +548,12 @@ public class MainActivity extends FragmentActivity implements InterfaceCommunica
 		/*Make Echo*/
 		Log.i("MainActivity",received);
 		Toast.makeText(this, "BES ans: "+received, Toast.LENGTH_SHORT).show();
+		if(received.equals("$BESOVTEMP")){
+				mNotificationManager.notify(NOTIF_ALERTA_ID, notifyTemperature.build());
+		}else if(received.equals("$BESOPEND")){
+				mNotificationManager.notify(NOTIF_ALERTA_ID, notifyDoor.build());
+			
+		}
 	}
 
 
@@ -514,6 +561,38 @@ public class MainActivity extends FragmentActivity implements InterfaceCommunica
 	public void sendToBES(String frameToSend) {
 		// TODO Auto-generated method stub
 		bluetooth.SendString(frameToSend);
+	}
+
+
+	@Override
+	public int bluetoothStatus() {
+		// TODO Auto-generated method stub
+		return bluetooth.getConnection_status();
+		
+	}
+	
+	void buildNotifications(){
+		mNotificationManager =(NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+		notifyTemperature =new NotificationCompat.Builder(MainActivity.this)
+		.setSmallIcon(android.R.drawable.stat_sys_warning)
+		.setLargeIcon((((BitmapDrawable)getResources().getDrawable(R.drawable.ic_launcher)).getBitmap()))
+		.setContentTitle("Domotic Room")
+		.setContentText("Temperature over setpoint.")
+		.setContentInfo("1")
+		.setTicker("Domotic Room!");
+		
+		notifyDoor =new NotificationCompat.Builder(MainActivity.this)
+		.setSmallIcon(android.R.drawable.stat_sys_warning)
+		.setLargeIcon((((BitmapDrawable)getResources().getDrawable(R.drawable.ic_launcher)).getBitmap()))
+		.setContentTitle("Domotic Room")
+		.setContentText("Open door.")
+		.setContentInfo("1")
+		.setTicker("Domotic Room!");
+		
+//		Intent notIntent =new Intent(MainActivity.this, MainActivity.class);
+//
+//		contIntent =PendingIntent.getActivity(MainActivity.this, 0, notIntent, 0);
+		//notifyTemperature.setContentIntent(contIntent);
 	}
 }
 

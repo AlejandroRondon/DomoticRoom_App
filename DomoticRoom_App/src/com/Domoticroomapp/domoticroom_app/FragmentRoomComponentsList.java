@@ -1,8 +1,11 @@
 package com.Domoticroomapp.domoticroom_app;
 
 import java.util.ArrayList;
+
+import BluetoothPackage_SE.InterfaceCommunication;
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseBooleanArray;
@@ -11,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,9 +23,12 @@ public class FragmentRoomComponentsList extends Fragment{
 	//private RoomComponent[] components;
 	private ArrayList<RoomComponent> components;
 	private ComponentsAdapter componentsAdapter;
+	public Button bConnect;
+	private InterfaceCommunication interfaceMain;
 	public FragmentRoomComponentsList(ArrayList<RoomComponent> components) {
 		// TODO Auto-generated constructor stub
 		this.components = components;
+		
 	}
 	public FragmentRoomComponentsList() {
 		// TODO Auto-generated constructor stub
@@ -32,7 +39,16 @@ public class FragmentRoomComponentsList extends Fragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, 
 			ViewGroup container, Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.fragment_roomcomponentslist, container, false);
+			View fragmentInflated = inflater.inflate(R.layout.fragment_roomcomponentslist, container, false);
+			bConnect = (Button) fragmentInflated.findViewById(R.id.bConnect);
+			if(interfaceMain.bluetoothStatus() == 0){
+				bConnect.setText("connect");
+				bConnect.setBackgroundColor(getResources().getColor(R.color.doorFragment));
+			}else{
+				bConnect.setText("disconnect");
+				bConnect.setBackgroundColor(getResources().getColor(R.color.temperatureFragment));
+			}
+		return fragmentInflated;
 	}
 	@Override
 	public void onActivityCreated(Bundle state) {
@@ -174,4 +190,20 @@ public class FragmentRoomComponentsList extends Fragment{
 			return(item);
 		}
 	}
+
+	@Override
+	public void onAttach(Activity activity) {
+		// TODO Auto-generated method stub
+		super.onAttach(activity);
+		interfaceMain = (MainActivity) activity;
+
+	}
+	@Override
+	public void onDetach() {
+		// TODO Auto-generated method stub
+		super.onDetach();
+		interfaceMain = null;
+	}
+	
+	
 }

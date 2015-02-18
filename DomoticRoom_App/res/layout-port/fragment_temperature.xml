@@ -34,6 +34,16 @@
             android:layout_weight="0.6"
             android:orientation="vertical" >
 
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:text="@string/sTemperatureCurrent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="italic" />
+
             <SeekBar
                 android:id="@+id/sBTemperature"
                 android:layout_width="match_parent"

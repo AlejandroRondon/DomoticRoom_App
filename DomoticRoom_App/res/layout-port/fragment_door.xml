@@ -37,21 +37,21 @@
 
             <Button
                 android:id="@+id/bDoorOpen"
-                android:layout_width="100dp"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/sDoorOpen" />
 
             <Button
                 android:id="@+id/bDoorClose"
-                android:layout_width="100dp"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/sDoorClose" />
 
             <Button
                 android:id="@+id/bDoorLock"
-                android:layout_width="100dp"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/sDoorLock" />

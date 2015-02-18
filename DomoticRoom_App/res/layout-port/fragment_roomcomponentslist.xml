@@ -17,6 +17,7 @@
         android:id="@+id/bMovetoroom"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginTop="5dp"
         android:background="@color/customBlue"
         android:drawableRight="@drawable/ic_movetoroom"
         android:onClick="movetoroom"

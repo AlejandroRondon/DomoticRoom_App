@@ -19,6 +19,7 @@ public class TemperatureFragment extends Fragment implements View.OnClickListene
 
 	String codeComponent;
 	String frame;
+	TextView curTemp;
 	SeekBar seekTemperature;
 	Button bON,bOFF,bAUTO;
 	public TemperatureFragment(String codeComponent){
@@ -36,13 +37,15 @@ public class TemperatureFragment extends Fragment implements View.OnClickListene
 		TextView	 title 		= (TextView)	 inflatedView.findViewById(R.id.tTitle);
 		title.setText(title.getText().toString() + " (" + codeComponent + ")");
 
+//		curTemp = (TextView) 
+		
 		seekTemperature = (SeekBar) inflatedView.findViewById(R.id.sBTemperature);
 
 		seekTemperature.setOnSeekBarChangeListener(this);
 		bON =(Button) inflatedView.findViewById(R.id.bTemperatureOn);
 		bOFF =(Button) inflatedView.findViewById(R.id.bTemperatureOff);
 		bAUTO =(Button) inflatedView.findViewById(R.id.bTemperatureAuto);
-		
+
 		bON.setOnClickListener(this);
 		bOFF.setOnClickListener(this);
 		bAUTO.setOnClickListener(this);
@@ -53,19 +56,19 @@ public class TemperatureFragment extends Fragment implements View.OnClickListene
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
 		// TODO Auto-generated method stub
-//		String subFrame = "";
-//
-//		if (progress < 10) {
-//			subFrame = "S00" + String.valueOf(progress);
-//		} else if (progress < 100) {
-//			subFrame = "S0" + String.valueOf(progress);
-//		} else {
-//			subFrame = "S" + String.valueOf(progress);
-//		}
-//		// String to send
-//		frame = "$" + codeComponent  +subFrame +"\n";
-//
-//		fragInterface.sendToBES(frame);
+		//		String subFrame = "";
+		//
+		//		if (progress < 10) {
+		//			subFrame = "S00" + String.valueOf(progress);
+		//		} else if (progress < 100) {
+		//			subFrame = "S0" + String.valueOf(progress);
+		//		} else {
+		//			subFrame = "S" + String.valueOf(progress);
+		//		}
+		//		// String to send
+		//		frame = "$" + codeComponent  +subFrame +"\n";
+		//
+		//		fragInterface.sendToBES(frame);
 	}
 
 	@Override
@@ -113,17 +116,17 @@ public class TemperatureFragment extends Fragment implements View.OnClickListene
 
 		fragInterface.sendToBES(frame);
 	}
-	
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        fragInterface = (InterfaceFragments) activity;
-    }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        fragInterface = null;
-    }
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		fragInterface = (InterfaceFragments) activity;
+	}
+
+	@Override
+	public void onDetach() {
+		super.onDetach();
+		fragInterface = null;
+	}
 
 }

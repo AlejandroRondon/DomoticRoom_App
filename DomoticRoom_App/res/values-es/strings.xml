@@ -2,38 +2,91 @@
 <resources>
 
     <string name="app_name">Domotic Room</string>
-    <string name="hello_world">Hola mundo!</string>
+    <string name="hello_world">¡Hola mundo!</string>
     <string name="action_settings">Configuración</string>
     <string name="sSettingsActivity">Configuración</string>
 
     <!-- BLUETOOTH FRAGMENT STRINGS -->
-
     <string name="Text">Estado: -</string>
-    <string name="on">Encender</string>
-    <string name="off">Apagar</string>
-    <string name="List">Lista de dispositivos conectados</string>
-    <string name="Find">Buscar nuevos dispositivos / Cancelar</string>
+    <string name="on">ENCENDER</string>
+    <string name="off">APAGAR</string>
+    <string name="List">Dispositivos emparejados</string>
+    <string name="Find">Buscar dispositivos / Cancelar</string>
     <string name="sUnderConstruction">En construcción</string>
     <string name="sCustomize">Personalizar</string>
     <string name="sBluetoothSettings">Configuración de Bluetooth</string>
     <string name="sSettings">Configuración</string>
     <string name="sBluetooth">Bluetooth</string>
+
+    <!-- ROOM COMPONENTS STRINGS -->
+    <string name="sDoor">Puerta</string>
+    <string name="sDoorImDescription">ABRIR/CERRAR Puerta</string>
+    <string name="sDoorOpen">ABRIR</string>
+    <string name="sDoorClose">CERRAR</string>
+    <string name="sDoorLock">BLOQUEAR</string>
+    <string name="sLcd">LCD</string>
+    <string name="sLcdSend">ENVIAR</string>
+    <string name="sLight">Luz</string>
+    <string name="sLightImDescription">ENCENDER/APAGAR Luz</string>
+    <string name="sLightAuto">AUTO</string>
+    <string name="sLightOn">ON</string>
+    <string name="sLightOff">OFF</string>
+    <string name="sMotor">Motor</string>
+    <string name="sMotorImDescription">ENCENDER/APAGAR Motor</string>
+    <string name="sMotorForward">ADELANTE</string>
+    <string name="sMotorBackward">ATRÁS</string>
+    <string name="sServo">Servomotor</string>
+    <string name="sServoImDescription">ENCENDER/APAGAR Servomotor</string>
+    <string name="sSwitch">Interruptor</string>
+    <string name="sSwitchImDescription">ENCENDER/APAGAR Interruptor</string>
+    <string name="sTemperature">Temperatura</string>
+    <string name="sTemperatureImDescription">ENCENDER/APAGAR Control de Temperatura</string>
+    <string name="sTemperatureAuto">AUTO</string>
+    <string name="sTemperatureOn">ON</string>
+    <string name="sTemperatureOff">OFF</string>
+    <string name="sTemperatureSetPoint">Set Point</string>
+    <string name="sTemperatureCurrent">24°C</string>
+    <string name="sWindow">Persiana</string>
+    <string name="sWindowHeight">Altura</string>
+    <string name="sWindowOpening">Apertura</string>
+    <string name="sWindowImDescriptionHeight">SUBIR/BAJAR Persiana</string>
+    <string name="sWindowImDescriptionOpening">ABRIR/CERRAR Persiana</string>
+
+    <!-- OTHERS -->
+    <string name="sUserName">Usuario</string>
+    <string name="sPassword">Clave</string>
     <string name="sNew">Nuevo</string>
     <string name="sDelete">Borrar</string>
     <string name="sEdit">Editar</string>
-    <string name="sUpdate">Actualizar</string>
     <string name="tab_1">Pestaña 1</string>
     <string name="tab_2">Pestaña 2</string>
-    <string name="sEmpty">Vacío</string>
+    <string name="sEmpty">Vaciar</string>
     <string name="sIDescritpion_NewRoom">Nueva Habitación</string>
-    
-    <string name="sLight">Luz</string>
-    <string name="sWindow">Ventana</string>
-    <string name="sTemperature">Temperatura</string>
-    <string name="sDoor">Puerta</string>
-    <string name="sSwitch">Interruptor</string>
-    <string name="sMotor">Motor</string>
-    <string name="sServo">Servo</string>
-    <string name="sLcd">LCD</string>
+    <string name="sComponent">Componente</string>
+    <string name="sComponentDescription">Descripción del componente</string>
+    <string name="sComponentImage">Imagen del componente</string>
+    <string name="SIDComponent">ID</string>
+    <string name="sPassToRoom">Agregar a habitación</string>
+    <string name="sOn">ENCENDER</string>
+    <string name="sOff">APAGAR</string>
+    <string name="sKey0">0</string>
+    <string name="sKey1">1</string>
+    <string name="sKey2">2</string>
+    <string name="sKey3">3</string>
+    <string name="sKey4">4</string>
+    <string name="sKey5">5</string>
+    <string name="sKey6">6</string>
+    <string name="sKey7">7</string>
+    <string name="sKey8">8</string>
+    <string name="sKey9">9</string>
+    <string name="sKeyA">A</string>
+    <string name="sKeyB">B</string>
+    <string name="sKeyC">C</string>
+    <string name="sKeyD">D</string>
+    <string name="sKeyAst">*</string>
+    <string name="sKeyNum">#</string>
+    <string name="sfromBT">SMS desde Bluetooth</string>
+    <string name="sSend">ENVIAR</string>
+    <string name="sConnect">CONECTAR</string>
 
 </resources>

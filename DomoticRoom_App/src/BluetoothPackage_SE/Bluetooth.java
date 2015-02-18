@@ -3,6 +3,7 @@ package BluetoothPackage_SE;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.UUID;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -10,12 +11,9 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.content.Intent;
-import android.net.wifi.WifiConfiguration.Status;
 import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
-import android.widget.Toast;
-
 public class Bluetooth {
 	final int RECIEVE_MESSAGE = 1;        // Status  for Handler
 	//To use in the LOG
@@ -44,7 +42,15 @@ public class Bluetooth {
 	public Activity activity;
 	public Context context;
 	private short connection_status;	// 0-no connection , 1-connected, 2-changing status
-	
+
+
+	public short getConnection_status() {
+		return connection_status;
+	}
+
+	public void setConnection_status(short connection_status) {
+		this.connection_status = connection_status;
+	}
 
 	@SuppressLint("HandlerLeak") public Bluetooth(String TAG,String MAC,Activity activity,Context context) {
 		// TODO Auto-generated constructor stub
@@ -74,7 +80,7 @@ public class Bluetooth {
 						Log.d("Bluetooth receive", "Ready to send string:"+ sbprint +  "Byte:" + msg.arg1 + "...");
 						sb.delete(0, sb.length());                                      // and clear
 						if(sbprint != null){
-						communicator.receivedString(sbprint);
+							communicator.receivedString(sbprint);
 						}
 					}
 					Log.d("Bluetooth receive", "...String:"+ sb.toString() +  "Byte:" + msg.arg1 + "...");
@@ -103,7 +109,7 @@ public class Bluetooth {
 		return  device.createRfcommSocketToServiceRecord(MY_UUID);
 	}
 
-	public void bluetoothOnResume(){
+	public int bluetoothConnect(){
 		onAttach();
 		Log.d(TAG, "...onResume - try connect...");
 		connection_status = 2;
@@ -132,11 +138,11 @@ public class Bluetooth {
 		try {
 			btSocket.connect();
 			Log.d(TAG, "....Connection ok...");
-			Toast.makeText(this.context, "Bluetooth: connection successful!", Toast.LENGTH_LONG).show();
+			//Toast.makeText(this.context, "Bluetooth: connection successful!", Toast.LENGTH_LONG).show();
 			connection_status = 1;
 		} catch (IOException e) {
 			Log.d(TAG, "....Connection fail...");
-			Toast.makeText(this.context, "Bluetooth: connection failed!", Toast.LENGTH_LONG).show();
+			//Toast.makeText(this.context, "Bluetooth: connection failed!", Toast.LENGTH_LONG).show();
 			connection_status = 0;
 			try {
 				btSocket.close();
@@ -151,20 +157,23 @@ public class Bluetooth {
 
 		mConnectedThread = new ConnectedThread(btSocket,h);
 		mConnectedThread.start();
+
+		return connection_status;
 	}
 
-	public void bluetoothOnPause(){
+	public int bluetoothDisconnect(){
 		onDetach();
 		Log.d(TAG, "...In onPause()...");
 		connection_status = 2;
 
 		try     {
 			btSocket.close();
-			Toast.makeText(this.context, "Bluetooth: disconnected!", Toast.LENGTH_LONG).show();
+			//Toast.makeText(this.context, "Bluetooth: disconnected!", Toast.LENGTH_LONG).show();
 			connection_status = 0;
 		} catch (IOException e2) {
 			errorExit("Fatal Error", "In onPause() and failed to close socket." + e2.getMessage() + ".");
 		}
+		return connection_status;
 	}
 
 	public void checkBTState() {
@@ -184,7 +193,7 @@ public class Bluetooth {
 	}
 
 	public void errorExit(String title, String message){
-		Toast.makeText(context, title + " - " + message, Toast.LENGTH_LONG).show();
+		//Toast.makeText(context, title + " - " + message, Toast.LENGTH_LONG).show();
 		activity.finish();
 	}
 
