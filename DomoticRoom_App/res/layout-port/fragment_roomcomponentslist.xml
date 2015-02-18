@@ -13,15 +13,14 @@
         android:onClick="connectBluetooth"
         android:text="@string/sConnect" />
 
-        <Button
-     
-            android:id="@+id/bMovetoroom"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@color/customBlue"
-            android:drawableRight="@drawable/ic_movetoroom"
-            android:onClick="movetoroom"
-            android:text="@string/sPassToRoom" />
+    <Button
+        android:id="@+id/bMovetoroom"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/customBlue"
+        android:drawableRight="@drawable/ic_movetoroom"
+        android:onClick="movetoroom"
+        android:text="@string/sPassToRoom" />
 
     <ListView
         android:id="@+id/LstListado"

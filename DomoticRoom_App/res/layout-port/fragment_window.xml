@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ppalLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:id="@+id/ppalLayout">
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/tTitle"
@@ -23,19 +23,19 @@
             android:id="@+id/imageButton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.4"
-            android:src="@drawable/fragment_window_head"
+            android:layout_weight="0.3"
             android:background="@android:color/transparent"
-            android:contentDescription="@string/sWindowImDescriptionOpening" />
+            android:contentDescription="@string/sWindowImDescriptionOpening"
+            android:src="@drawable/fragment_window_head" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="0.6"
+            android:layout_weight="0.7"
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/tWindowHeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
@@ -43,14 +43,13 @@
                 android:text="@string/sWindowHeight" />
 
             <SeekBar
-                android:id="@+id/seekBar1"
+                android:id="@+id/sBWindowHeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_weight="0.25" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/tWindowOpening"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
@@ -58,10 +57,9 @@
                 android:text="@string/sWindowOpening" />
 
             <SeekBar
-                android:id="@+id/seekBar2"
+                android:id="@+id/sBWindowOpening"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_weight="0.25" />
         </LinearLayout>
     </LinearLayout>

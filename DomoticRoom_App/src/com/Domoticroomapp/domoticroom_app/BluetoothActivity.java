@@ -203,13 +203,26 @@ public class BluetoothActivity extends Activity {
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-		unregisterReceiver(bReceiver);
+		if(bReceiver != null){
+			//unregisterReceiver(bReceiver);
+		}
 	}
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
 		//unregisterReceiver(bReceiver);
+	}
+
+	@Override
+	public void onBackPressed() {
+
+        Intent i = new Intent();
+    	i.putExtra("MAC", "00:00:00:00:00:00");
+    	setResult(RESULT_OK,i);
+    	finish(); //DEstruir la actividad
+		//super.onBackPressed();
+			
 	}
 
 }

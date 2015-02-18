@@ -29,8 +29,9 @@ import dialogsPack.InputText_Dialog;
 import dialogsPack.SelectionMulti_Dialog;
 import dialogsPack.SelectionSingle_Dialog;
 import dialogsPack.Selection_Dialog;
+import fragmentComponents.InterfaceFragments;
 
-public class MainActivity extends FragmentActivity implements InterfaceCommunication {
+public class MainActivity extends FragmentActivity implements InterfaceCommunication,InterfaceFragments {
 
 	Bluetooth bluetooth;
 	String nameTag ;
@@ -70,10 +71,10 @@ public class MainActivity extends FragmentActivity implements InterfaceCommunica
 
 		/*************************BLUETOOTH******************************/
 		// MAC-address of Bluetooth module (you must edit this line)
-		//nameTag = "Bluetooth COM";
-		//MAC = "00:15:FF:F3:9E:40";
+		nameTag = "Bluetooth COM";
+		MAC = "00:15:FF:F3:9E:40";
 
-		MAC = "00:00:00:00:00:00";
+		//MAC = "00:00:00:00:00:00";
 		bluetooth = new Bluetooth(nameTag,MAC,this, getBaseContext());
 
 		layoutAnimado = (LinearLayout) findViewById(R.id.animado);
@@ -205,7 +206,7 @@ public class MainActivity extends FragmentActivity implements InterfaceCommunica
 		if (id == android.R.id.home){
 			Log.v("MENU", "Home pressed");
 			/*frame to emulate a frame of update*/
-			String BluetoothFrame_Probe ="$BESLI01WI01TE01DO01SW01MO01SE01LC01LI02WI01TE03DO04WI02WI03";
+			String BluetoothFrame_Probe ="$BESLI01WI01TE01DO01SW01MO01MO02SE01LC01LI02WI01TE03DO04WI02WI03";
 
 			/*new instance of a framemanager to manage the frame received*/
 			FrameManager frameManager = new FrameManager();
@@ -330,11 +331,12 @@ public class MainActivity extends FragmentActivity implements InterfaceCommunica
 
 		//super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode==Intent_KEYWORD_BT && resultCode==RESULT_OK ) {
-
-
 			MAC = data.getExtras().getString("MAC");
-			bluetooth.setMAC(MAC);
-			Toast.makeText(getApplicationContext(), "Save mac: " + MAC, Toast.LENGTH_SHORT).show();
+			if(!MAC.equals("00:00:00:00:00:00")){
+				
+				bluetooth.setMAC(MAC);
+				Toast.makeText(getApplicationContext(), "Save mac: " + MAC, Toast.LENGTH_SHORT).show();
+			}
 
 		}
 
@@ -504,7 +506,14 @@ public class MainActivity extends FragmentActivity implements InterfaceCommunica
 		// TODO Auto-generated method stub
 		/*Make Echo*/
 		Log.i("MainActivity",received);
-		bluetooth.SendString("Echo: "+received);
+		Toast.makeText(this, "BES ans: "+received, Toast.LENGTH_SHORT).show();
+	}
+
+
+	@Override
+	public void sendToBES(String frameToSend) {
+		// TODO Auto-generated method stub
+		bluetooth.SendString(frameToSend);
 	}
 }
 

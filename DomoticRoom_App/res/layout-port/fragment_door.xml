@@ -25,9 +25,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="0.4"
-            android:src="@drawable/fragment_door_head"
             android:background="@android:color/transparent"
-            android:contentDescription="@string/sDoorImDescription" />
+            android:contentDescription="@string/sDoorImDescription"
+            android:src="@drawable/fragment_door_head" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -36,21 +36,21 @@
             android:orientation="vertical" >
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/bDoorOpen"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/sDoorOpen" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/bDoorClose"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/sDoorClose" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/bDoorLock"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

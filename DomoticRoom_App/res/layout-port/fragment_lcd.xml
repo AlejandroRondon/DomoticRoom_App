@@ -24,9 +24,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="0.4"
-            android:src="@drawable/fragment_lcd_head"
             android:background="@android:color/transparent"
-            android:contentDescription="@string/sDoorImDescription" />
+            android:contentDescription="@string/sDoorImDescription"
+            android:src="@drawable/fragment_lcd_head" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -37,14 +37,14 @@
             <EditText
                 android:id="@+id/eLcdSend"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="85dp"
                 android:inputType="textMultiLine" >
 
                 <requestFocus />
             </EditText>
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/bLcdSend"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

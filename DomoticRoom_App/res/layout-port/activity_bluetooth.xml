@@ -7,28 +7,32 @@
   <TextView
        android:id="@+id/text"
        android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
+       android:layout_height="48dp"
        android:textAppearance="?android:attr/textAppearanceLarge"
        android:text="@string/Text" />
      
    <LinearLayout
+      android:layout_alignTop="10dp"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="horizontal"
+      android:gravity="center"
       android:layout_marginTop="30dp" >
 
    <Button
       style="@android:attr/buttonBarButtonStyle"
       android:id="@+id/turnOn"
-      android:layout_width="wrap_content"
+      android:layout_width="200dp"
       android:layout_height="wrap_content"
+      android:background="@color/customBlue"
       android:text="@string/on" />
 
    <Button
         style="@android:attr/buttonBarButtonStyle"
       android:id="@+id/turnOff"
-      android:layout_width="wrap_content"
+      android:layout_width="200dp"
       android:layout_height="wrap_content"
+      android:background="@color/doorFragment"
       android:text="@string/off" />
 
    </LinearLayout>
@@ -42,14 +46,18 @@
    
 	   <Button
 	      android:id="@+id/paired"
-	      android:layout_width="wrap_content"
+	      android:layout_width="match_parent"
 	      android:layout_height="wrap_content"
+	      android:layout_marginTop="5dp"
+	      android:background="@color/lightFragment"
 	      android:text="@string/List" />
 	     
 	   <Button
 	      android:id="@+id/search"
-	      android:layout_width="wrap_content"
+	      android:layout_width="match_parent"
 	      android:layout_height="wrap_content"
+	      android:layout_marginTop="5dp"
+	      android:background="@color/motorFragment"
 	      android:text="@string/Find" />
 
 	   <ListView
